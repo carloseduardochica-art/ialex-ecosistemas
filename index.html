@@ -14,28 +14,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-/* Estilos para el modal flotante de portada */
-.modal-backdrop {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 1000;
-}
+/* 1. THE SETUP & CORE VARIABLES */
+* { box-sizing: border-box; }
 
-.main-cover-modal {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 80%; max-width: 1000px; max-height: 90%;
-    padding: 60px; border-radius: 24px; border: 2px solid var(--accent);
-    background-size: cover; background-position: center;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.7); z-index: 1001;
-    overflow-y: auto;
+:root {
+    --bg-dark: #0d0d0d;
+    --surface: #1a1414;
+    --surface-light: #2a2424;
+    --primary: #7B0D0D;
+    --primary-dark: #5a0a0a;
+    --accent: #e8a020;
+    --accent-light: #ffb84d;
+    --text-main: #ffffff;
+    --text-muted: #cccccc;
+    --border-color: rgba(232, 160, 32, 0.3);
+    --shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
-
-.close-btn {
-    position: absolute; top: 20px; right: 20px;
-    background: none; border: none; color: white;
-    font-size: 30px; cursor: pointer; transition: color 0.3s;
-}
-
-.close-btn:hover { color: var(--accent); }
 
 body {
     background-color: #121212;
@@ -55,183 +49,149 @@ body {
 }
 
 /* ==========================================================================
-   NAVEGACIÓN GLOBAL (TOP NAV)
+   MODAL FLOTANTE DE PORTADA (OVERLAY INICIAL)
    ========================================================================== */
-.top-nav {
+.modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 70px;
-    background: rgba(13, 13, 13, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-color);
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 3000;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0 40px;
-    z-index: 2000;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
-.nav-brand {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    color: var(--text-main);
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
-    letter-spacing: 1px;
 }
 
-.nav-brand i { color: var(--accent); }
+.modal-image {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(232, 160, 32, 0.2);
+    object-fit: contain;
+    border: 1px solid var(--border-color);
+}
 
-.nav-links { display: flex; gap: 30px; }
+.modal-close {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 40px;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+}
 
-.nav-links a {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
+.modal-close:hover {
+    transform: scale(1.1);
+    color: #fff;
+}
+
+.modal-text {
     color: var(--text-muted);
+    margin-top: 15px;
+    font-size: 14px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: color 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
+/* ==========================================================================
+   NAVEGACIÓN GLOBAL (TOP NAV)
+   ========================================================================== */
+.top-nav {
+    position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+    background: rgba(13, 13, 13, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between;
+    align-items: center; padding: 0 40px; z-index: 2000;
+}
+
+.nav-brand { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: var(--text-main); display: flex; align-items: center; gap: 10px; letter-spacing: 1px; }
+.nav-brand i { color: var(--accent); }
+.nav-links { display: flex; gap: 30px; }
+.nav-links a { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; display: flex; align-items: center; gap: 8px; }
 .nav-links a.active { color: var(--accent); }
 .nav-links a:hover:not(.disabled) { color: var(--text-main); }
 .nav-links a.disabled { opacity: 0.5; cursor: default; pointer-events: none; }
-
-.badge-soon {
-    background: var(--primary);
-    color: white;
-    font-size: 9px;
-    padding: 2px 6px;
-    border-radius: 10px;
-    letter-spacing: 0;
-}
+.badge-soon { background: var(--primary); color: white; font-size: 9px; padding: 2px 6px; border-radius: 10px; letter-spacing: 0; }
 
 /* 2. SLIDES COMPONENTS */
-.slide-container <div class="slide-container full-bg-image" id="slide1">
-    <div class="modal-backdrop"></div>
-    
-    <div class="main-cover-modal" style="background-image: linear-gradient(rgba(13, 13, 13, 0.7), rgba(13, 13, 13, 0.9)), url('portada.jpg');">
-        <button class="close-btn" onclick="document.getElementById('slide1').style.display='none';"><i class="fa-solid fa-xmark"></i></button>
-        
-        <div class="content-overlay">
-            <div class="eyebrow">Dossier de Proyecto · Primera Edición 2026</div>
-            <h1>Diseño y Arquitectura de <span>Ecosistemas de Aprendizaje con IA</span></h1>
-            <p class="subtitle">Uso crítico, estratégico y éticamente responsable de la Inteligencia Artificial en la investigación y producción jurídica de alto impacto.</p>
-            <div class="pill-container">
-                <div class="pill">40 horas</div>
-                <div class="pill">3 Módulos</div>
-                <div class="pill">Modalidad Híbrida</div>
-            </div>
-        </div>
-    </div>
-</div>
-.slide-container::after {
-    content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 8px;
-    background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary)); z-index: 2;
+.slide-container {
+    background-color: var(--bg-dark); border-radius: 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: center; position: relative; width: 100%; max-width: 1280px; min-height: 720px; padding: 60px; border: 1px solid var(--border-color); overflow: hidden;
 }
-
+.slide-container::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 8px; background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary)); z-index: 2; }
 .slide-container > * { position: relative; z-index: 1; }
-
-.slide-container h1, .slide-container h2, .slide-container h3, .slide-container .number, .slide-title {
-    color: var(--text-main); font-family: 'Montserrat', sans-serif; font-weight: 700; margin: 0; letter-spacing: -0.02em;
-}
-.slide-container p, .slide-container li, .slide-container .subtitle {
-    color: var(--text-muted); font-family: 'Inter', sans-serif; line-height: 1.7; font-size: 20px;
-}
+.slide-container h1, .slide-container h2, .slide-container h3, .slide-container .number, .slide-title { color: var(--text-main); font-family: 'Montserrat', sans-serif; font-weight: 700; margin: 0; letter-spacing: -0.02em; }
+.slide-container p, .slide-container li, .slide-container .subtitle { color: var(--text-muted); font-family: 'Inter', sans-serif; line-height: 1.7; font-size: 20px; }
 .slide-container h1 { font-size: 72px; line-height: 1.1; text-transform: uppercase; }
 .slide-container h1 span { color: var(--accent); }
-.slide-container .slide-title { 
-    font-size: 56px; text-align: left; width: 100%; margin-bottom: 50px; border-left: 8px solid var(--primary); padding-left: 30px; text-transform: uppercase;
-}
+.slide-container .slide-title { font-size: 56px; text-align: left; width: 100%; margin-bottom: 50px; border-left: 8px solid var(--primary); padding-left: 30px; text-transform: uppercase; }
 .slide-container h3 { font-size: 32px; margin-bottom: 20px; color: var(--accent); }
 .slide-container .subtitle { font-size: 26px; color: var(--text-muted); margin-top: 30px; max-width: 900px; font-weight: 500; }
-
 .content-area { align-items: center; display: flex; flex-direction: column; flex-grow: 1; justify-content: center; width: 100%; }
 
 .eyebrow {
-    background: linear-gradient(90deg, var(--primary-dark), rgba(232, 160, 32, 0.2));
-    border: 1px solid var(--accent); color: var(--accent-light); padding: 8px 20px; border-radius: 30px;
-    font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px;
-    display: inline-block; box-shadow: 0 4px 15px rgba(232, 160, 32, 0.2);
+    background: linear-gradient(90deg, var(--primary-dark), rgba(232, 160, 32, 0.2)); border: 1px solid var(--accent); color: var(--accent-light); padding: 8px 20px; border-radius: 30px; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; display: inline-block; box-shadow: 0 4px 15px rgba(232, 160, 32, 0.2);
 }
 
 .full-bg-image { background-position: center; background-size: cover; border: none; align-items: center; }
 .full-bg-image .content-overlay {
-    text-align: center; background: rgba(13, 13, 13, 0.9); padding: 80px; border-radius: 24px;
-    border: 2px solid var(--accent); max-width: 1100px; width: 100%; backdrop-filter: blur(10px); box-shadow: var(--shadow);
+    text-align: center; background: rgba(13, 13, 13, 0.9); padding: 80px; border-radius: 24px; border: 2px solid var(--accent); max-width: 1100px; width: 100%; backdrop-filter: blur(10px); box-shadow: var(--shadow);
 }
 .full-bg-image .pill-container { display: flex; gap: 20px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
-.full-bg-image .pill {
-    background: var(--primary); color: #fff; padding: 12px 30px; border-radius: 40px; font-size: 18px;
-    font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border: 2px solid var(--primary-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
+.full-bg-image .pill { background: var(--primary); color: #fff; padding: 12px 30px; border-radius: 40px; font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border: 2px solid var(--primary-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 
-.slide-container.bleed-image-layout { display: grid; gap: 0; grid-template-columns: 1fr 1fr; padding: 0; border: none; }
-.slide-container.bleed-image-layout > .content-container {
-    padding: 80px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, var(--bg-dark), var(--surface)); border-right: 4px solid var(--accent);
-}
-.slide-container.bleed-image-layout > .image-container { height: 100%; overflow: hidden; width: 100%; position: relative; min-height: 400px; }
-.slide-container.bleed-image-layout > .image-container::after {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, rgba(13,13,13,0.8), transparent);
-}
-.slide-container.bleed-image-layout img.bleed-image-side { display: block; height: 100%; object-fit: cover; object-position: center; width: 100%; position: absolute; }
-.bleed-image-layout .slide-title { margin-bottom: 30px; border-left: none; padding-left: 0; font-size: 48px; }
-.bleed-image-layout p { font-size: 24px; color: var(--text-main); margin-bottom: 30px; }
-.bleed-image-layout strong { color: var(--accent); }
+/* ==========================================================================
+   SPLIT CONTENT LAYOUT (SLIDE 2)
+   ========================================================================== */
+.slide-container.split-content-layout { display: grid; gap: 0; grid-template-columns: 1fr 1fr; padding: 0; border: none; }
+.split-content-layout > .left-side { padding: 80px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, var(--bg-dark), var(--surface)); border-right: 1px solid var(--border-color); }
+.split-content-layout > .right-side { padding: 80px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, var(--surface-light), var(--bg-dark)); position: relative; }
+.split-content-layout > .right-side::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; box-shadow: inset 0 0 100px rgba(232, 160, 32, 0.05); pointer-events: none; }
+
+.solution-grid { display: grid; grid-template-columns: 1fr; gap: 25px; margin-top: 10px; }
+.solution-item { display: flex; align-items: center; gap: 20px; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s, border-color 0.3s, background 0.3s; }
+.solution-item:hover { transform: translateX(10px); border-color: var(--accent); background: rgba(232, 160, 32, 0.08); }
+.solution-item i { font-size: 30px; color: var(--accent); width: 40px; text-align: center; }
+.solution-item strong { display: block; color: var(--text-main); font-size: 18px; margin-bottom: 5px; font-weight: 600; }
+.solution-item span { color: var(--text-muted); font-size: 14px; line-height: 1.4; display: block; }
 
 .tiled-content { display: flex; gap: 40px; width: 100%; }
-.tile {
-    background: linear-gradient(180deg, var(--surface), var(--bg-dark)); border: 1px solid var(--border-color); border-radius: 20px;
-    display: flex; flex-direction: column; flex: 1; padding: 50px 40px; position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+.tile { background: linear-gradient(180deg, var(--surface), var(--bg-dark)); border: 1px solid var(--border-color); border-radius: 20px; display: flex; flex-direction: column; flex: 1; padding: 50px 40px; position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .tile:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(232, 160, 32, 0.15); border-color: var(--accent); }
 .tile::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--primary); }
-.tile .icon {
-    color: var(--accent); font-size: 50px; margin-bottom: 30px; background: rgba(232, 160, 32, 0.15);
-    width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid var(--border-color); flex-shrink: 0;
-}
+.tile .icon { color: var(--accent); font-size: 50px; margin-bottom: 30px; background: rgba(232, 160, 32, 0.15); width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid var(--border-color); flex-shrink: 0; }
 .tile h3 { font-size: 28px; color: #fff; }
 .tile p { font-size: 20px; }
 
-/* Cuadrícula 12 Herramientas */
 .grid-10-tools { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; margin-top: 20px; }
-.tool-card {
-    background: linear-gradient(135deg, var(--surface), var(--bg-dark)); border: 1px solid var(--border-color); border-radius: 16px;
-    padding: 30px 20px; text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center;
-}
+.tool-card { background: linear-gradient(135deg, var(--surface), var(--bg-dark)); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px 20px; text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .tool-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(232, 160, 32, 0.15); }
 .tool-card i { font-size: 40px; color: var(--accent); margin-bottom: 15px; }
 .tool-card strong { color: #fff; font-size: 18px; font-weight: 600; }
 
-.highlight-numbers-layout {
-    display: flex; align-items: center; gap: 80px; background: linear-gradient(90deg, var(--bg-dark), var(--surface));
-    padding: 80px; border-radius: 24px; border: 2px solid var(--accent); box-shadow: var(--shadow); width: 100%;
-}
+.highlight-numbers-layout { display: flex; align-items: center; gap: 80px; background: linear-gradient(90deg, var(--bg-dark), var(--surface)); padding: 80px; border-radius: 24px; border: 2px solid var(--accent); box-shadow: var(--shadow); width: 100%; }
 .highlight-numbers-layout > div:first-child { flex: 0 0 40%; text-align: right; border-right: 4px solid var(--primary); padding-right: 80px; }
 .highlight-numbers-layout .number { color: var(--accent); font-size: 160px; line-height: 0.9; text-shadow: 0 0 30px rgba(232, 160, 32, 0.4); }
 .highlight-numbers-layout .number-label { font-size: 28px; color: var(--text-main); font-weight: 700; letter-spacing: 2px; margin-top: 20px; text-transform: uppercase; }
 .highlight-numbers-layout h3 { font-size: 40px; color: #fff; margin-bottom: 30px; }
 .highlight-numbers-layout p { font-size: 24px; }
-.highlight-numbers-layout i { color: var(--accent); margin-right: 15px; font-size: 28px; }
 
-.rounded-image-layout {
-    display: flex; align-items: center; gap: 80px; background: linear-gradient(90deg, var(--surface), var(--bg-dark));
-    padding: 80px; border-radius: 24px; border: 1px solid var(--border-color); width: 100%;
-}
-.rounded-image-layout .image-wrapper {
-    border-radius: 50%; flex-shrink: 0; height: 450px; width: 450px; border: 6px solid var(--accent);
-    overflow: hidden; box-shadow: var(--shadow); position: relative; background-color: var(--surface-light);
-}
+.rounded-image-layout { display: flex; align-items: center; gap: 80px; background: linear-gradient(90deg, var(--surface), var(--bg-dark)); padding: 80px; border-radius: 24px; border: 1px solid var(--border-color); width: 100%; }
+.rounded-image-layout .image-wrapper { border-radius: 50%; flex-shrink: 0; height: 450px; width: 450px; border: 6px solid var(--accent); overflow: hidden; box-shadow: var(--shadow); position: relative; background-color: var(--surface-light); }
 .rounded-image-layout .image-wrapper img { height: 100%; width: 100%; object-fit: cover; }
 .rounded-image-layout h3 { font-size: 42px; color: #fff; margin-bottom: 10px; }
 .rounded-image-layout .role { color: var(--accent); font-weight: 700; font-size: 24px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; }
@@ -247,13 +207,11 @@ body {
 .contact-row i { font-size: 40px; color: var(--accent); width: 50px; text-align: center; flex-shrink: 0; }
 .contact-row span { font-size: 28px; color: var(--text-main); font-weight: 600; word-break: break-word; }
 .cta-button-container { margin-top: 50px; }
-.cta-button {
-    background: var(--accent); color: var(--bg-dark); padding: 20px 50px; border-radius: 50px; font-size: 24px;
-    font-weight: 800; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; display: inline-flex; align-items: center; gap: 15px; box-shadow: 0 10px 30px rgba(232, 160, 32, 0.4); transition: all 0.3s ease;
-}
+.cta-button { background: var(--accent); color: var(--bg-dark); padding: 20px 50px; border-radius: 50px; font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; display: inline-flex; align-items: center; gap: 15px; box-shadow: 0 10px 30px rgba(232, 160, 32, 0.4); transition: all 0.3s ease; }
 .cta-button:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(232, 160, 32, 0.6); background: var(--accent-light); }
 
 @media (max-width: 1024px) {
+    .modal-close { top: -40px; right: 0; }
     .slide-container { padding: 40px 30px; min-height: auto; }
     .slide-container h1 { font-size: 48px; }
     .slide-container .slide-title { font-size: 40px; padding-left: 20px; margin-bottom: 30px; border-left-width: 5px; }
@@ -261,30 +219,23 @@ body {
     .slide-container p, .slide-container li, .slide-container .subtitle { font-size: 18px; }
     .full-bg-image .content-overlay { padding: 40px 20px; }
     .full-bg-image .pill { font-size: 14px; padding: 10px 20px; }
-    .slide-container.bleed-image-layout { grid-template-columns: 1fr; }
-    .slide-container.bleed-image-layout > .content-container { padding: 40px 30px; border-right: none; border-bottom: 4px solid var(--accent); }
-    .slide-container.bleed-image-layout > .image-container { min-height: 300px; height: 300px; }
-    .slide-container.bleed-image-layout > .image-container::after { background: linear-gradient(to bottom, rgba(13,13,13,0.8), transparent); }
+    
+    .slide-container.split-content-layout { grid-template-columns: 1fr; }
+    .split-content-layout > .left-side, .split-content-layout > .right-side { padding: 40px 30px; }
+    .split-content-layout > .left-side { border-right: none; border-bottom: 2px solid var(--border-color); }
+    
     .tiled-content { flex-direction: column; gap: 20px; }
     .tile { padding: 40px 30px; }
-    .tile .icon { width: 70px; height: 70px; font-size: 35px; margin-bottom: 20px; }
     .grid-10-tools { grid-template-columns: repeat(3, 1fr); }
     .highlight-numbers-layout { flex-direction: column; padding: 40px 30px; gap: 40px; text-align: center; }
     .highlight-numbers-layout > div:first-child { border-right: none; border-bottom: 2px solid var(--primary); padding-right: 0; padding-bottom: 30px; }
     .highlight-numbers-layout .number { font-size: 100px; }
     .rounded-image-layout { flex-direction: column; padding: 40px 30px; gap: 40px; text-align: center; }
     .rounded-image-layout .image-wrapper { width: 280px; height: 280px; }
-    .rounded-image-layout h3 { font-size: 32px; }
-    .rounded-image-layout ul li { justify-content: center; text-align: left; }
     .qa-layout { padding: 40px 20px; }
     .qa-layout h2 { font-size: 48px; }
     .contact-box { padding: 40px 20px; width: 100%; }
     .contact-row { flex-direction: column; gap: 15px; text-align: center; }
-    .contact-row i { font-size: 30px; }
-    .contact-row span { font-size: 20px; }
-    .cta-button { font-size: 18px; padding: 15px 30px; width: 100%; justify-content: center; }
-    .top-nav { padding: 0 20px; }
-    .nav-links a { font-size: 12px; }
 }
 
 @media (max-width: 480px) {
@@ -292,8 +243,6 @@ body {
     .slide-container { padding: 30px 20px; border-radius: 12px; }
     .slide-container h1 { font-size: 36px; }
     .slide-container .slide-title { font-size: 28px; padding-left: 15px; }
-    .slide-container p, .slide-container li, .slide-container .subtitle { font-size: 16px; }
-    .full-bg-image .pill { width: 100%; text-align: center; }
     .rounded-image-layout .image-wrapper { width: 200px; height: 200px; }
     .highlight-numbers-layout .number { font-size: 80px; }
     .qa-layout h2 { font-size: 36px; }
@@ -306,6 +255,20 @@ body {
 </head>
 <body>
 
+<!-- MODAL FLOTANTE DE PORTADA -->
+<div id="portada-modal" class="modal-overlay">
+    <div class="modal-content">
+        <!-- Botón de Cierre "X" -->
+        <button class="modal-close" onclick="document.getElementById('portada-modal').style.display='none'">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <!-- Imagen de Portada -->
+        <img src="portada.jpg" alt="Portada Dossier IA LEX" class="modal-image" onerror="this.style.display='none'">
+        <div class="modal-text">Haz clic en la X para continuar</div>
+    </div>
+</div>
+
+<!-- Navegación Global Superior -->
 <nav class="top-nav">
     <div class="nav-brand">
         <i class="fa-solid fa-scale-balanced"></i> <span>IA LEX</span>
@@ -316,7 +279,8 @@ body {
     </div>
 </nav>
 
-<div class="slide-container full-bg-image" id="slide1" style="background-image: linear-gradient(rgba(13, 13, 13, 0.7), rgba(13, 13, 13, 0.9)), url('portada.jpg');">
+<!-- Slide 1: Introducción Teórica -->
+<div class="slide-container full-bg-image" id="slide1" style="background: radial-gradient(circle at center, #2a0808 0%, #0d0d0d 100%);">
     <div class="content-overlay">
         <div class="eyebrow">Dossier de Proyecto · Primera Edición 2026</div>
         <h1>Diseño y Arquitectura de <span>Ecosistemas de Aprendizaje con IA</span></h1>
@@ -329,20 +293,60 @@ body {
     </div>
 </div>
 
-<div class="slide-container bleed-image-layout" id="slide2">
-    <div class="content-container">
-        <div class="eyebrow">El Paradigma Actual</div>
+<!-- Slide 2: El Problema y La Solución (Arquitectura de Texto e Íconos) -->
+<div class="slide-container split-content-layout" id="slide2">
+    <!-- Lado Izquierdo: El Problema -->
+    <div class="left-side">
+        <div class="eyebrow" style="border-color: var(--primary); color: var(--accent-light);">El Paradigma Actual</div>
         <h2 class="slide-title" style="border-left: none; padding-left: 0; margin-bottom: 30px;">El Problema que Resolvemos</h2>
         <div class="content-area" style="align-items: flex-start; justify-content: flex-start;">
             <p>Los profesionales usan la IA como un <strong>oráculo infalible</strong>, delegando el pensamiento crítico sin consciencia ética y arriesgando datos sensibles.</p>
             <p style="margin-top: 30px;">Este programa transforma esa vulnerabilidad en una <strong>ventaja arquitectónica</strong>, enseñando a orquestar herramientas con rigor científico y seguridad.</p>
         </div>
     </div>
-    <div class="image-container">
-        <img class="bleed-image-side" src="https://images.unsplash.com/photo-1655635643532-fa9ba2648cbe?auto=format&fit=crop&q=80&w=1200" alt="Arquitectura de datos y redes neuronales">
+    
+    <!-- Lado Derecho: La Solución (Reemplaza la imagen rota) -->
+    <div class="right-side">
+        <div class="eyebrow" style="background: rgba(232, 160, 32, 0.1); border-color: var(--accent); color: var(--accent);">La Solución</div>
+        <h3 style="color: #fff; font-size: 28px; margin-bottom: 10px;">El Profesional Transformado</h3>
+        <p style="font-size: 16px; margin-bottom: 25px; color: var(--text-muted);">
+            Postura erguida, segura. Interactuando con múltiples herramientas de IA organizadas como un sistema. La IA ya no es un "oráculo", sino: <strong>paneles, dashboards y flujos conectados.</strong>
+        </p>
+
+        <div class="solution-grid">
+            <div class="solution-item">
+                <i class="fa-solid fa-lock"></i>
+                <div>
+                    <strong>Seguridad Activa</strong>
+                    <span>Protección de datos sensibles garantizada.</span>
+                </div>
+            </div>
+            <div class="solution-item">
+                <i class="fa-solid fa-brain"></i>
+                <div>
+                    <strong>Pensamiento Crítico</strong>
+                    <span>El cerebro humano dirige a la máquina.</span>
+                </div>
+            </div>
+            <div class="solution-item">
+                <i class="fa-solid fa-puzzle-piece"></i>
+                <div>
+                    <strong>Arquitectura de Soluciones</strong>
+                    <span>Bloques de IA estructurados lógicamente.</span>
+                </div>
+            </div>
+            <div class="solution-item">
+                <i class="fa-solid fa-chart-network"></i>
+                <div>
+                    <strong>Flujos Conectados</strong>
+                    <span>Resultados predecibles y auditables.</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+<!-- Slide 3: Module 1 -->
 <div class="slide-container" id="slide3">
     <h2 class="slide-title">Módulo 1: Fundamentos y Ética Base</h2>
     <div class="content-area">
@@ -366,6 +370,7 @@ body {
     </div>
 </div>
 
+<!-- Slide 4: Module 2 -->
 <div class="slide-container" id="slide4">
     <h2 class="slide-title">Módulo 2: Investigación de Alto Impacto</h2>
     <div class="content-area">
@@ -389,6 +394,7 @@ body {
     </div>
 </div>
 
+<!-- Slide 5: Module 3 -->
 <div class="slide-container" id="slide5">
     <h2 class="slide-title">Módulo 3: Orquestación Avanzada</h2>
     <div class="content-area">
@@ -412,6 +418,7 @@ body {
     </div>
 </div>
 
+<!-- Slide 6: Ecosystem Tools -->
 <div class="slide-container" id="slide6">
     <h2 class="slide-title">Las 12 Herramientas del Ecosistema Integrado</h2>
     <div class="content-area">
@@ -434,13 +441,15 @@ body {
     </div>
 </div>
 
+<!-- Slide 7: Investment -->
 <div class="slide-container" id="slide7">
     <h2 class="slide-title">Estructura de Inversión</h2>
     <div class="content-area">
         <div class="highlight-numbers-layout">
             <div>
-                <div class="number">$95</div>
-                <div class="number-label">USD + IVA / MÓDULO</div>
+                <!-- TEXTO ACTUALIZADO: CLARIDAD FINANCIERA -->
+                <div class="number">USD 95</div>
+                <div class="number-label">más IVA x módulo</div>
             </div>
             <div>
                 <h3>Avanza a tu propio ritmo</h3>
@@ -451,13 +460,14 @@ body {
     </div>
 </div>
 
+<!-- Slide 8: Instructor -->
 <div class="slide-container" id="slide8">
     <h2 class="slide-title">Arquitecto del Programa</h2>
     <div class="content-area">
         <div class="rounded-image-layout">
             <div>
                 <div class="image-wrapper">
-                    <img src="carlos-foto.jpeg" alt="Prof. Carlos Eduardo Chica Villacís">
+                    <img src="carlos.jpg" alt="Prof. Carlos Eduardo Chica Villacís" onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800'">
                 </div>
             </div>
             <div>
@@ -466,7 +476,8 @@ body {
                 <ul style="list-style: none; padding: 0;">
                     <li><i class="fa-solid fa-chevron-right"></i>Doctorando en Derecho</li>
                     <li><i class="fa-solid fa-chevron-right"></i>Máster en Derecho Procesal y Tributario</li>
-                    <li><i class="fa-solid fa-chevron-right"></i>Máster en Inteligencia Artificial Aplicada</li>
+                    <!-- TEXTO ACTUALIZADO: MAESTRANTE -->
+                    <li><i class="fa-solid fa-chevron-right"></i>Maestrante en Inteligencia Artificial Aplicada</li>
                     <li><i class="fa-solid fa-chevron-right"></i>Diseñador experto de flujos de orquestación pedagógica para formación jurídica.</li>
                 </ul>
             </div>
@@ -474,6 +485,7 @@ body {
     </div>
 </div>
 
+<!-- Slide 9: Contact -->
 <div class="slide-container" id="slide9">
     <div class="qa-layout">
         <div class="eyebrow">Cupos Limitados</div>
