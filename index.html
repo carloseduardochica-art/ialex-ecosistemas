@@ -14,22 +14,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-/* 1. THE SETUP & CORE VARIABLES */
-* { box-sizing: border-box; }
-
-:root {
-    --bg-dark: #0d0d0d;
-    --surface: #1a1414;
-    --surface-light: #2a2424;
-    --primary: #7B0D0D;
-    --primary-dark: #5a0a0a;
-    --accent: #e8a020;
-    --accent-light: #ffb84d;
-    --text-main: #ffffff;
-    --text-muted: #cccccc;
-    --border-color: rgba(232, 160, 32, 0.3);
-    --shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+/* Estilos para el modal flotante de portada */
+.modal-backdrop {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 1000;
 }
+
+.main-cover-modal {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 80%; max-width: 1000px; max-height: 90%;
+    padding: 60px; border-radius: 24px; border: 2px solid var(--accent);
+    background-size: cover; background-position: center;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.7); z-index: 1001;
+    overflow-y: auto;
+}
+
+.close-btn {
+    position: absolute; top: 20px; right: 20px;
+    background: none; border: none; color: white;
+    font-size: 30px; cursor: pointer; transition: color 0.3s;
+}
+
+.close-btn:hover { color: var(--accent); }
 
 body {
     background-color: #121212;
@@ -111,22 +117,24 @@ body {
 }
 
 /* 2. SLIDES COMPONENTS */
-.slide-container {
-    background-color: var(--bg-dark);
-    border-radius: 16px;
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    max-width: 1280px;
-    min-height: 720px;
-    padding: 60px;
-    border: 1px solid var(--border-color);
-    overflow: hidden;
-}
-
+.slide-container <div class="slide-container full-bg-image" id="slide1">
+    <div class="modal-backdrop"></div>
+    
+    <div class="main-cover-modal" style="background-image: linear-gradient(rgba(13, 13, 13, 0.7), rgba(13, 13, 13, 0.9)), url('portada.jpg');">
+        <button class="close-btn" onclick="document.getElementById('slide1').style.display='none';"><i class="fa-solid fa-xmark"></i></button>
+        
+        <div class="content-overlay">
+            <div class="eyebrow">Dossier de Proyecto · Primera Edición 2026</div>
+            <h1>Diseño y Arquitectura de <span>Ecosistemas de Aprendizaje con IA</span></h1>
+            <p class="subtitle">Uso crítico, estratégico y éticamente responsable de la Inteligencia Artificial en la investigación y producción jurídica de alto impacto.</p>
+            <div class="pill-container">
+                <div class="pill">40 horas</div>
+                <div class="pill">3 Módulos</div>
+                <div class="pill">Modalidad Híbrida</div>
+            </div>
+        </div>
+    </div>
+</div>
 .slide-container::after {
     content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 8px;
     background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary)); z-index: 2;
