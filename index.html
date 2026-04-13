@@ -184,7 +184,7 @@ body {
 .tool-card strong { color: #fff; font-size: 18px; font-weight: 600; }
 
 /* ==========================================================================
-   AJUSTE DE JERARQUÍA DE PRECIO (REDUCIDO A 110PX)
+   AJUSTE DE JERARQUÍA DE PRECIO Y BOTONES DE CONVERSIÓN
    ========================================================================== */
 .highlight-numbers-layout { display: flex; align-items: center; gap: 80px; background: linear-gradient(90deg, var(--bg-dark), var(--surface)); padding: 80px; border-radius: 24px; border: 2px solid var(--accent); box-shadow: var(--shadow); width: 100%; }
 .highlight-numbers-layout > div:first-child { flex: 0 0 40%; text-align: right; border-right: 4px solid var(--primary); padding-right: 80px; }
@@ -209,9 +209,13 @@ body {
 .contact-row:last-child { margin-bottom: 0; }
 .contact-row i { font-size: 40px; color: var(--accent); width: 50px; text-align: center; flex-shrink: 0; }
 .contact-row span { font-size: 28px; color: var(--text-main); font-weight: 600; word-break: break-word; }
-.cta-button-container { margin-top: 50px; }
-.cta-button { background: var(--accent); color: var(--bg-dark); padding: 20px 50px; border-radius: 50px; font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; display: inline-flex; align-items: center; gap: 15px; box-shadow: 0 10px 30px rgba(232, 160, 32, 0.4); transition: all 0.3s ease; }
+
+/* NUEVOS BOTONES DE CONVERSIÓN */
+.cta-button-container { margin-top: 50px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.cta-button { background: var(--accent); color: var(--bg-dark); padding: 20px 40px; border-radius: 50px; font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; display: inline-flex; align-items: center; gap: 15px; box-shadow: 0 10px 30px rgba(232, 160, 32, 0.4); transition: all 0.3s ease; }
 .cta-button:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(232, 160, 32, 0.6); background: var(--accent-light); }
+.cta-button.secondary-cta { background: transparent; border: 2px solid var(--accent); color: var(--accent); box-shadow: none; }
+.cta-button.secondary-cta:hover { background: rgba(232, 160, 32, 0.1); color: var(--accent-light); border-color: var(--accent-light); transform: translateY(-5px); }
 
 @media (max-width: 1024px) {
     .modal-close { top: -40px; right: 0; }
@@ -232,13 +236,14 @@ body {
     .grid-10-tools { grid-template-columns: repeat(3, 1fr); }
     .highlight-numbers-layout { flex-direction: column; padding: 40px 30px; gap: 40px; text-align: center; }
     .highlight-numbers-layout > div:first-child { border-right: none; border-bottom: 2px solid var(--primary); padding-right: 0; padding-bottom: 30px; }
-    .highlight-numbers-layout .number { font-size: 80px; } /* ESCALA MÓVIL */
+    .highlight-numbers-layout .number { font-size: 80px; }
     .rounded-image-layout { flex-direction: column; padding: 40px 30px; gap: 40px; text-align: center; }
     .rounded-image-layout .image-wrapper { width: 280px; height: 280px; }
     .qa-layout { padding: 40px 20px; }
     .qa-layout h2 { font-size: 48px; }
     .contact-box { padding: 40px 20px; width: 100%; }
     .contact-row { flex-direction: column; gap: 15px; text-align: center; }
+    .cta-button { font-size: 16px; padding: 15px 25px; width: 100%; justify-content: center; }
 }
 
 @media (max-width: 480px) {
@@ -247,7 +252,7 @@ body {
     .slide-container h1 { font-size: 36px; }
     .slide-container .slide-title { font-size: 28px; padding-left: 15px; }
     .rounded-image-layout .image-wrapper { width: 200px; height: 200px; }
-    .highlight-numbers-layout .number { font-size: 60px; } /* ESCALA MÓVIL */
+    .highlight-numbers-layout .number { font-size: 60px; }
     .qa-layout h2 { font-size: 36px; }
     .grid-10-tools { grid-template-columns: repeat(2, 1fr); }
     .nav-brand span { display: none; }
@@ -296,7 +301,7 @@ body {
     </div>
 </div>
 
-<!-- Slide 2: El Problema y La Solución (Arquitectura de Texto e Íconos) -->
+<!-- Slide 2: El Problema y La Solución -->
 <div class="slide-container split-content-layout" id="slide2">
     <!-- Lado Izquierdo: El Problema -->
     <div class="left-side">
@@ -450,14 +455,15 @@ body {
     <div class="content-area">
         <div class="highlight-numbers-layout">
             <div>
-                <!-- TEXTO Y TAMAÑO ACTUALIZADO -->
                 <div class="number">USD 95</div>
                 <div class="number-label">más IVA x módulo</div>
             </div>
             <div>
                 <h3>Avanza a tu propio ritmo</h3>
                 <p style="margin-bottom: 30px;">Una estructura académica diseñada para que construyas conocimiento con confianza. Empieza con el Módulo 1. Si el aprendizaje transforma tu dinámica laboral, continúas con el Módulo 2.</p>
-                <p style="color: var(--accent-light); font-weight: 700; font-size: 26px;"><i class="fa-solid fa-circle-check"></i>Sin compromisos financieros anticipados.</p>
+                <p style="color: var(--accent-light); font-weight: 700; font-size: 26px; margin-bottom: 15px;"><i class="fa-solid fa-circle-check"></i>Sin compromisos financieros anticipados.</p>
+                <!-- TEXTO ACTUALIZADO: CERTIFICACIÓN -->
+                <p style="color: var(--accent); font-weight: 600; font-size: 20px;"><i class="fa-solid fa-certificate"></i> Entregamos un CERTIFICADO PROPIO por cada módulo aprobado.</p>
             </div>
         </div>
     </div>
@@ -470,7 +476,6 @@ body {
         <div class="rounded-image-layout">
             <div>
                 <div class="image-wrapper">
-                    <!-- ENLACE ESCALONADO PARA TU FOTO -->
                     <img src="carlos.jpg" alt="Prof. Carlos Eduardo Chica Villacís" onerror="this.onerror=null; this.src='carlos-foto.jpeg';">
                 </div>
             </div>
@@ -506,9 +511,17 @@ body {
             </div>
         </div>
         
+        <!-- DOBLE LLAMADA A LA ACCIÓN -->
         <div class="cta-button-container">
-            <a href="https://wa.me/message/KWZK3JAIZNMIO1" class="cta-button" target="_blank">
-                <i class="fa-brands fa-whatsapp"></i>Inscríbete
+            <!-- Botón Primario: Pasarela de Pago -->
+            <a href="https://tally.so/r/ob7g0N" class="cta-button" target="_blank">
+                <i class="fa-solid fa-credit-card"></i> Inscribirme y Pagar
+            </a>
+            
+            <!-- Botón Secundario: Resolución de Dudas (WhatsApp) -->
+            <!-- Nota: La URL formatea los espacios como %20 para que el texto llegue limpio al chat -->
+            <a href="https://wa.me/593995841580?text=Profe,%20sobre%20la%20formaci%C3%B3n%20en%20IA%20tengo%20una%20duda;" class="cta-button secondary-cta" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> Tengo una duda
             </a>
         </div>
     </div>
