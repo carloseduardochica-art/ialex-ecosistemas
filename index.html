@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta property="og:title" content="Formación IA LEX - Docentes Innovadores">
-    <meta property="og:description" content="Transforma tu cátedra. Reducción de carga, diseño instruccional avanzado y evaluación blindada con IA.">
+    <meta property="og:title" content="Formación IA LEX - Ecosistemas de Aprendizaje">
+    <meta property="og:description" content="Diseña tu propio ecosistema con IA. Modalidad híbrida. Inicio por módulos.">
     <meta property="og:type" content="website">
-    <title>IA LEX - Formación para Docentes</title>
+    <title>IA LEX - Presentación de Curso</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,34 +18,19 @@
 * { box-sizing: border-box; }
 
 :root {
-    --bg-dark: #0d0d0d;
-    --surface: #1a1414;
-    --surface-light: #2a2424;
-    --primary: #7B0D0D;
-    --primary-dark: #5a0a0a;
-    --accent: #e8a020;
-    --accent-light: #ffb84d;
-    --text-main: #ffffff;
-    --text-muted: #cccccc;
+    --bg-dark: #0d0d0d; --surface: #1a1414; --surface-light: #2a2424;
+    --primary: #7B0D0D; --primary-dark: #5a0a0a;
+    --accent: #e8a020; --accent-light: #ffb84d;
+    --text-main: #ffffff; --text-muted: #cccccc;
     --border-color: rgba(232, 160, 32, 0.3);
     --shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 body {
     background-color: #121212;
-    background-image: 
-        linear-gradient(rgba(123, 13, 13, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(123, 13, 13, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    margin: 0;
-    min-height: 100vh;
-    padding: 100px 20px 40px 20px;
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
+    background-image: linear-gradient(rgba(123, 13, 13, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(123, 13, 13, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px; display: flex; flex-direction: column; align-items: center; gap: 40px;
+    margin: 0; min-height: 100vh; padding: 100px 20px 40px 20px; font-family: 'Inter', sans-serif; overflow-x: hidden;
 }
 
 /* ==========================================================================
@@ -56,19 +41,36 @@ body {
     background: rgba(0, 0, 0, 0.95); z-index: 3000; display: flex;
     justify-content: center; align-items: center; backdrop-filter: blur(10px);
 }
-.modal-content { position: relative; width: 90%; max-width: 1000px; max-height: 90vh; display: flex; flex-direction: column; align-items: center; }
-.modal-image { max-width: 100%; max-height: 80vh; border-radius: 12px; box-shadow: 0 20px 60px rgba(232, 160, 32, 0.2); object-fit: contain; border: 1px solid var(--border-color); }
-.modal-close { position: absolute; top: -45px; right: 0px; background: none; border: none; color: var(--accent); font-size: 35px; cursor: pointer; transition: transform 0.2s, color 0.2s; z-index: 3001; }
+
+.modal-content {
+    position: relative; width: 90%; max-width: 900px; max-height: 90vh;
+    display: flex; flex-direction: column; align-items: center;
+}
+
+.modal-image {
+    max-width: 100%; max-height: 80vh; border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(232, 160, 32, 0.2); object-fit: contain;
+    border: 1px solid var(--border-color);
+}
+
+.modal-close {
+    position: absolute; top: -45px; right: 0px; background: none; border: none;
+    color: var(--accent); font-size: 35px; cursor: pointer; transition: transform 0.2s, color 0.2s; z-index: 3001;
+}
+
 .modal-close:hover { transform: scale(1.1); color: #fff; }
-.modal-text { color: var(--text-muted); margin-top: 15px; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; text-align: center; }
+
+.modal-text {
+    color: var(--text-muted); margin-top: 15px; font-size: 14px;
+    letter-spacing: 2px; text-transform: uppercase; text-align: center;
+}
 
 /* ==========================================================================
    NAVEGACIÓN GLOBAL (TOP NAV)
    ========================================================================== */
 .top-nav {
-    position: fixed; top: 0; left: 0; width: 100%; height: 70px;
-    background: rgba(13, 13, 13, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color);
-    display: flex; justify-content: space-between; align-items: center; padding: 0 40px; z-index: 2000;
+    position: fixed; top: 0; left: 0; width: 100%; height: 70px; background: rgba(13, 13, 13, 0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; padding: 0 40px; z-index: 2000;
 }
 .nav-brand { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: var(--text-main); display: flex; align-items: center; gap: 10px; letter-spacing: 1px; }
 .nav-brand i { color: var(--accent); }
@@ -78,9 +80,7 @@ body {
 .nav-links a:hover { color: var(--text-main); }
 
 /* 2. SLIDES COMPONENTS */
-.slide-container {
-    background-color: var(--bg-dark); border-radius: 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: center; position: relative; width: 100%; max-width: 1280px; min-height: 720px; padding: 60px; border: 1px solid var(--border-color); overflow: hidden;
-}
+.slide-container { background-color: var(--bg-dark); border-radius: 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: center; position: relative; width: 100%; max-width: 1280px; min-height: 720px; padding: 60px; border: 1px solid var(--border-color); overflow: hidden; }
 .slide-container::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 8px; background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary)); z-index: 2; }
 .slide-container > * { position: relative; z-index: 1; }
 .slide-container h1, .slide-container h2, .slide-container h3, .slide-container .number, .slide-title { color: var(--text-main); font-family: 'Montserrat', sans-serif; font-weight: 700; margin: 0; letter-spacing: -0.02em; word-break: break-word; hyphens: auto; }
@@ -92,14 +92,10 @@ body {
 .slide-container .subtitle { font-size: 26px; color: var(--text-muted); margin-top: 30px; max-width: 900px; font-weight: 500; }
 .content-area { align-items: center; display: flex; flex-direction: column; flex-grow: 1; justify-content: center; width: 100%; }
 
-.eyebrow {
-    background: linear-gradient(90deg, var(--primary-dark), rgba(232, 160, 32, 0.2)); border: 1px solid var(--accent); color: var(--accent-light); padding: 8px 20px; border-radius: 30px; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; display: inline-block; box-shadow: 0 4px 15px rgba(232, 160, 32, 0.2);
-}
+.eyebrow { background: linear-gradient(90deg, var(--primary-dark), rgba(232, 160, 32, 0.2)); border: 1px solid var(--accent); color: var(--accent-light); padding: 8px 20px; border-radius: 30px; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; display: inline-block; box-shadow: 0 4px 15px rgba(232, 160, 32, 0.2); }
 
 .full-bg-image { background-position: center; background-size: cover; border: none; align-items: center; }
-.full-bg-image .content-overlay {
-    text-align: center; background: rgba(13, 13, 13, 0.9); padding: 80px; border-radius: 24px; border: 2px solid var(--accent); max-width: 1100px; width: 100%; backdrop-filter: blur(10px); box-shadow: var(--shadow);
-}
+.full-bg-image .content-overlay { text-align: center; background: rgba(13, 13, 13, 0.9); padding: 80px; border-radius: 24px; border: 2px solid var(--accent); max-width: 1100px; width: 100%; backdrop-filter: blur(10px); box-shadow: var(--shadow); }
 .full-bg-image .pill-container { display: flex; gap: 20px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
 .full-bg-image .pill { background: var(--primary); color: #fff; padding: 12px 30px; border-radius: 40px; font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border: 2px solid var(--primary-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-align: center; }
 
@@ -109,7 +105,6 @@ body {
 .slide-container.split-content-layout { display: grid; gap: 0; grid-template-columns: 1fr 1fr; padding: 0; border: none; }
 .split-content-layout > .left-side { padding: 80px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, var(--bg-dark), var(--surface)); border-right: 1px solid var(--border-color); }
 .split-content-layout > .right-side { padding: 80px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, var(--surface-light), var(--bg-dark)); position: relative; }
-.split-content-layout > .right-side::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; box-shadow: inset 0 0 100px rgba(232, 160, 32, 0.05); pointer-events: none; }
 
 .solution-grid { display: grid; grid-template-columns: 1fr; gap: 25px; margin-top: 10px; }
 .solution-item { display: flex; align-items: center; gap: 20px; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s, border-color 0.3s, background 0.3s; }
@@ -156,15 +151,10 @@ body {
 .contact-row i { font-size: 40px; color: var(--accent); width: 50px; text-align: center; flex-shrink: 0; }
 .contact-row span { font-size: 28px; color: var(--text-main); font-weight: 600; word-break: break-word; }
 
-.date-badge {
-    display: inline-flex; align-items: center; justify-content: center; border: 2px dashed var(--accent);
-    color: var(--accent); font-size: 22px; font-weight: 800; padding: 15px 40px; border-radius: 16px;
-    text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 0 20px rgba(232, 160, 32, 0.15);
-    background: rgba(232, 160, 32, 0.05); text-align: center; max-width: 100%;
-}
+.date-badge { display: inline-flex; align-items: center; justify-content: center; border: 2px dashed var(--accent); color: var(--accent); font-size: 22px; font-weight: 800; padding: 15px 40px; border-radius: 16px; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 0 20px rgba(232, 160, 32, 0.15); background: rgba(232, 160, 32, 0.05); text-align: center; max-width: 100%; }
 
 .cta-button-container { margin-top: 50px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
-.cta-button { background: var(--accent); color: var(--bg-dark); padding: 20px 40px; border-radius: 50px; font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 15px; box-shadow: 0 10px 30px rgba(232, 160, 32, 0.4); transition: all 0.3s ease; text-align: center; }
+.cta-button { background: var(--accent); color: var(--bg-dark); padding: 20px 40px; border-radius: 50px; font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 15px; box-shadow: 0 10px 30px rgba(232, 160, 32, 0.4); transition: all 0.3s ease; text-align: center; border: none; }
 .cta-button:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(232, 160, 32, 0.6); background: var(--accent-light); }
 .cta-button.secondary-cta { background: transparent; border: 2px solid var(--accent); color: var(--accent); box-shadow: none; }
 .cta-button.secondary-cta:hover { background: rgba(232, 160, 32, 0.1); color: var(--accent-light); border-color: var(--accent-light); transform: translateY(-5px); }
@@ -230,43 +220,45 @@ body {
     .nav-brand span { display: none; }
     .nav-links { gap: 15px; }
     .nav-links a { font-size: 11px; }
-    .modal-content { width: 95%; padding: 20px; }
-    .modal-close { top: -45px; right: 0px; font-size: 30px; }
     .date-badge { font-size: 14px; padding: 12px 15px; letter-spacing: 1px; flex-direction: column; gap: 5px; }
+    
+    /* Responsive controls for the simple modal */
+    .modal-content { width: 95%; padding: 0; }
+    .modal-close { top: -40px; right: 0px; font-size: 30px; }
 }
     </style>
 </head>
 <body>
 
-<!-- MODAL FLOTANTE DE PORTADA -->
+<!-- MODAL FLOTANTE DE PORTADA (SOLO IMAGEN) -->
 <div id="portada-modal" class="modal-overlay">
     <div class="modal-content">
         <button class="modal-close" onclick="document.getElementById('portada-modal').style.display='none'">
             <i class="fa-solid fa-xmark"></i>
         </button>
-        <!-- Enlazamos la misma portada genérica, o una nueva "portada-docentes.jpg" si la creas -->
-        <img src="portada.jpg" alt="Portada Dossier Docentes" class="modal-image" onerror="this.style.display='none'">
+        <!-- Imagen de Portada -->
+        <img src="portada.jpg" alt="Portada Dossier IA LEX" class="modal-image" onerror="this.style.display='none'">
         <div class="modal-text">Haz clic en la X para continuar</div>
     </div>
 </div>
 
-<!-- NAVEGACIÓN GLOBAL: ESTA VEZ "DOCENTES" ESTÁ ACTIVO -->
+<!-- NAVEGACIÓN GLOBAL: ESTUDIANTES ACTIVO -->
 <nav class="top-nav">
     <div class="nav-brand">
         <i class="fa-solid fa-scale-balanced"></i> <span>IA LEX</span>
     </div>
     <div class="nav-links">
-        <a href="index.html">Formación Estudiantes</a>
-        <a href="docentes.html" class="active">Formación Docentes</a>
+        <a href="index.html" class="active">Formación Estudiantes</a>
+        <a href="docentes.html">Formación Docentes</a>
     </div>
 </nav>
 
-<!-- Slide 1: Introducción Teórica DOCENTES -->
+<!-- Slide 1: Introducción Teórica -->
 <div class="slide-container full-bg-image" id="slide1" style="background: radial-gradient(circle at center, #2a0808 0%, #0d0d0d 100%);">
     <div class="content-overlay">
-        <div class="eyebrow">Formación Especializada · Primera Edición 2026</div>
-        <h1>El Docente de Derecho Innovador y <span>Estratégico con IA</span></h1>
-        <p class="subtitle">Arquitecto de Ecologías de Aprendizaje. Reducción de carga administrativa, diseño instruccional avanzado y gobernanza ética de datos.</p>
+        <div class="eyebrow">Dossier de Proyecto · Primera Edición 2026</div>
+        <h1>Diseño y Arquitectura de <span>Ecosistemas de Aprendizaje con IA</span></h1>
+        <p class="subtitle">Uso crítico, estratégico y éticamente responsable de la Inteligencia Artificial en la investigación y producción jurídica de alto impacto.</p>
         <div class="pill-container">
             <div class="pill">40 horas</div>
             <div class="pill">3 Módulos</div>
@@ -275,164 +267,104 @@ body {
     </div>
 </div>
 
-<!-- Slide 2: El Problema y La Solución DOCENTES -->
+<!-- Slide 2: El Problema y La Solución -->
 <div class="slide-container split-content-layout" id="slide2">
     <div class="left-side">
-        <div class="eyebrow" style="border-color: var(--primary); color: var(--accent-light);">La Paradoja Inédita</div>
-        <h2 class="slide-title" style="border-left: none; padding-left: 0; margin-bottom: 30px;">El Problema en la Cátedra</h2>
+        <div class="eyebrow" style="border-color: var(--primary); color: var(--accent-light);">El Paradigma Actual</div>
+        <h2 class="slide-title" style="border-left: none; padding-left: 0; margin-bottom: 30px;">El Problema que Resolvemos</h2>
         <div class="content-area" style="align-items: flex-start; justify-content: flex-start;">
-            <p>Los estudiantes usan IA cotidianamente, mientras el docente carece de formación para auditarla. <strong>Esta brecha no es tecnológica, es pedagógica.</strong></p>
-            <p style="margin-top: 20px;">Súmale una <strong>carga administrativa insostenible</strong> (sílabos, rúbricas, casos) y un sistema de evaluación obsoleto que ya no distingue entre el análisis humano y el texto generado por algoritmos.</p>
+            <p>Los profesionales usan la IA como un <strong>oráculo infalible</strong>, delegando el pensamiento crítico sin consciencia ética y arriesgando datos sensibles.</p>
+            <p style="margin-top: 30px;">Este programa transforma esa vulnerabilidad en una <strong>ventaja arquitectónica</strong>, enseñando a orquestar herramientas con rigor científico y seguridad.</p>
         </div>
     </div>
     
     <div class="right-side">
-        <div class="eyebrow" style="background: rgba(232, 160, 32, 0.1); border-color: var(--accent); color: var(--accent);">Nuestra Intervención</div>
-        <h3 style="color: #fff; font-size: 28px; margin-bottom: 10px;">De Transmisor a Arquitecto</h3>
+        <div class="eyebrow" style="background: rgba(232, 160, 32, 0.1); border-color: var(--accent); color: var(--accent);">La Solución</div>
+        <h3 style="color: #fff; font-size: 28px; margin-bottom: 10px;">El Profesional Transformado</h3>
         <p style="font-size: 16px; margin-bottom: 25px; color: var(--text-muted);">
-            No es un curso de ofimática. Es un programa de transformación pedagógica. Terminas con un ecosistema completo para tu asignatura real construido, probado y listo para implementar.
+            Postura erguida, segura. Interactuando con múltiples herramientas de IA organizadas como un sistema. La IA ya no es un "oráculo", sino: <strong>paneles, dashboards y flujos conectados.</strong>
         </p>
 
         <div class="solution-grid">
-            <div class="solution-item">
-                <i class="fa-solid fa-clock-rotate-left"></i>
-                <div>
-                    <strong>Reducción de Carga en un 70%</strong>
-                    <span>Automatización de tareas repetitivas con supervisión mínima.</span>
-                </div>
-            </div>
-            <div class="solution-item">
-                <i class="fa-solid fa-shield-halved"></i>
-                <div>
-                    <strong>Evaluaciones Anti-Fraude</strong>
-                    <span>Implementación del Log de Interacción como instrumento.</span>
-                </div>
-            </div>
-            <div class="solution-item">
-                <i class="fa-solid fa-layer-group"></i>
-                <div>
-                    <strong>Diseño Instruccional</strong>
-                    <span>Alineamiento constructivo de Biggs asistido por modelos base.</span>
-                </div>
-            </div>
-            <div class="solution-item">
-                <i class="fa-solid fa-file-contract"></i>
-                <div>
-                    <strong>El Sílabo Blindado</strong>
-                    <span>Protocolos de gobernanza, anonimización y transparencia.</span>
-                </div>
-            </div>
+            <div class="solution-item"><i class="fa-solid fa-lock"></i><div><strong>Seguridad Activa</strong><span>Protección de datos sensibles garantizada.</span></div></div>
+            <div class="solution-item"><i class="fa-solid fa-brain"></i><div><strong>Pensamiento Crítico</strong><span>El cerebro humano dirige a la máquina.</span></div></div>
+            <div class="solution-item"><i class="fa-solid fa-puzzle-piece"></i><div><strong>Arquitectura de Soluciones</strong><span>Bloques de IA estructurados lógicamente.</span></div></div>
+            <div class="solution-item"><i class="fa-solid fa-chart-network"></i><div><strong>Flujos Conectados</strong><span>Resultados predecibles y auditables.</span></div></div>
         </div>
     </div>
 </div>
 
-<!-- Slide 3: Module 1 DOCENTES -->
+<!-- Slide 3: Module 1 -->
 <div class="slide-container" id="slide3">
-    <h2 class="slide-title">Módulo 1: Fundamentos, Motor y Asistentes de Cátedra</h2>
+    <h2 class="slide-title">Módulo 1: Fundamentos y Ética Base</h2>
     <div class="content-area">
         <div class="tiled-content">
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-dna"></i></div>
-                <h3>El ADN Docente Permanente</h3>
-                <p>Configuración de Custom Instructions usando el Framework RCTFR+CISCO+RISEN para domar el motor de razonamiento profundo.</p>
-            </div>
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-user-tie"></i></div>
-                <h3>Asistentes Especializados</h3>
-                <p>Construcción y versionado de GPTs/Gemas. Diseñadores de sílabos, generadores de casos y evaluadores de trabajos operativos 24/7.</p>
-            </div>
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-eye"></i></div>
-                <h3>El Vigía Pedagógico</h3>
-                <p>Transparencia, modelado y auditoría frente al estudiante. Mitigación radical de la alucinación pedagógica y la responsabilidad amplificada.</p>
-            </div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-microchip"></i></div><h3>La IA Vista Desde Dentro</h3><p>Análisis de qué es un LLM, el fenómeno de la alucinación jurídica y el mapeo del ecosistema actual para mitigar errores sistémicos.</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-terminal"></i></div><h3>Prompting Jurídico</h3><p>Aplicación del Framework RCTFR+CISCO para establecer un ADN jurídico permanente en las interacciones con asistentes especializados.</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-shield-halved"></i></div><h3>Privacidad por Diseño</h3><p>Gestión del secreto profesional y construcción de un Segundo Cerebro seguro utilizando bases de datos locales y tecnología RAG.</p></div>
         </div>
     </div>
 </div>
 
-<!-- Slide 4: Module 2 DOCENTES -->
+<!-- Slide 4: Module 2 -->
 <div class="slide-container" id="slide4">
-    <h2 class="slide-title">Módulo 2: Ecosistema de Aprendizaje y Evaluación Blindada</h2>
+    <h2 class="slide-title">Módulo 2: Investigación de Alto Impacto</h2>
     <div class="content-area">
         <div class="tiled-content">
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-cubes"></i></div>
-                <h3>Alineamiento Constructivo</h3>
-                <p>Ingeniería de casos jurídicos escalonados aplicando el modelo de Biggs. Diseño de la experiencia del estudiante con verificación humana.</p>
-            </div>
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-vault"></i></div>
-                <h3>La Bóveda Docente</h3>
-                <p>Uso de NotebookLM para curar legislación y doctrina propia. Cadena de producción hacia Gamma.app y Audio Overviews para el aula invertida.</p>
-            </div>
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-file-shield"></i></div>
-                <h3>Evaluación Resistente a IA</h3>
-                <p>Diseño e implementación del Log de Interacción. Reestructuración de rúbricas integrando la Taxonomía de Bloom ejecutada por algoritmos.</p>
-            </div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div><h3>Búsqueda Triangulada</h3><p>Técnicas avanzadas con Perplexity y Consensus para extraer evidencia científica y citas verificables en tiempo real, revisadas por pares.</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-scale-balanced"></i></div><h3>Ecosistemas Nativos</h3><p>Integración de plataformas legales especializadas como Vincent AI (vLex) para análisis de jurisprudencia sin efecto de caja negra.</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-photo-film"></i></div><h3>Orquestación Visual</h3><p>Transformación de investigaciones complejas en narrativas persuasivas mediante la orquestación de herramientas visuales como Gamma.app.</p></div>
         </div>
     </div>
 </div>
 
-<!-- Slide 5: Module 3 DOCENTES -->
+<!-- Slide 5: Module 3 -->
 <div class="slide-container" id="slide5">
-    <h2 class="slide-title">Módulo 3: Gobernanza, Productividad e IA Agéntica</h2>
+    <h2 class="slide-title">Módulo 3: Orquestación Avanzada</h2>
     <div class="content-area">
         <div class="tiled-content">
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                <h3>El Sílabo Blindado</h3>
-                <p>Clasificación de datos, protocolo de anonimización por diseño y cumplimiento de leyes de protección de datos personales (LODP/Ley 1581).</p>
-            </div>
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-network-wired"></i></div>
-                <h3>IA Agéntica sin Código</h3>
-                <p>Automatización de la gestión académica. Despliegue de flujos con Make.com para alertas legislativas en el Registro/Diario Oficial de EC y CO.</p>
-            </div>
-            <div class="tile">
-                <div class="icon"><i class="fa-solid fa-server"></i></div>
-                <h3>Privacidad Absoluta</h3>
-                <p>Ejecución local de Modelos de Lenguaje mediante Ollama. Orquestación avanzada con MCP para trabajos y evaluaciones altamente confidenciales.</p>
-            </div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-diagram-project"></i></div><h3>Principios de Orquestación</h3><p>Dominio de los principios estructurales para el diseño de flujos de trabajo jurídicos, incluyendo verificación por capas e intervención humana.</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-robot"></i></div><h3>IA Agéntica</h3><p>De usuario a arquitecto: diseño, despliegue y evaluación de agentes autónomos y asistentes especializados capaces de ejecutar múltiples pasos.</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-gavel"></i></div><h3>El Futuro del Derecho</h3><p>Reflexión sobre la ética algorítmica, las habilidades no delegables y el perfil del abogado aumentado por inteligencia artificial.</p></div>
         </div>
     </div>
 </div>
 
-<!-- Slide 6: Ecosystem Tools DOCENTES -->
+<!-- Slide 6: Ecosystem Tools -->
 <div class="slide-container" id="slide6">
-    <h2 class="slide-title">El Ecosistema Tecnológico del Docente</h2>
+    <h2 class="slide-title">Las 12 Herramientas del Ecosistema Integrado</h2>
     <div class="content-area">
-        <p style="text-align: center; max-width: 900px; margin-bottom: 20px;">No enseñamos herramientas aisladas; construimos ecologías. Una suscripción activa (Claude o Gemini) habilita el 80% de este stack operativo.</p>
+        <p style="text-align: center; max-width: 900px; margin-bottom: 20px;">Dominarás un stack tecnológico completo de herramientas especializadas, orquestadas para potenciar la investigación, redacción y gestión jurídica de alto impacto.</p>
         
         <div class="grid-10-tools">
-            <div class="tool-card"><i class="fa-solid fa-brain"></i><strong>Claude Pro</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-sparkles"></i><strong>Gemini Adv.</strong></div>
+            <div class="tool-card"><i class="fa-solid fa-robot"></i><strong>ChatGPT</strong></div>
+            <div class="tool-card"><i class="fa-solid fa-sparkles"></i><strong>Gemini</strong></div>
+            <div class="tool-card"><i class="fa-solid fa-brain"></i><strong>Claude</strong></div>
             <div class="tool-card"><i class="fa-solid fa-book-journal-whills"></i><strong>NotebookLM</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-diagram-project"></i><strong>Make.com</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-server"></i><strong>Ollama</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-network-wired"></i><strong>MCP Node</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-microscope"></i><strong>Consensus</strong></div>
             <div class="tool-card"><i class="fa-solid fa-magnifying-glass"></i><strong>Perplexity</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-presentation-screen"></i><strong>Gamma.app</strong></div>
+            <div class="tool-card"><i class="fa-solid fa-microscope"></i><strong>Consensus</strong></div>
+            <div class="tool-card"><i class="fa-solid fa-flask"></i><strong>Elicit</strong></div>
+            <div class="tool-card"><i class="fa-solid fa-scale-balanced"></i><strong>Vincent AI</strong></div>
+            <div class="tool-card"><i class="fa-solid fa-presentation-screen"></i><strong>Gamma</strong></div>
             <div class="tool-card"><i class="fa-solid fa-bookmark"></i><strong>Zotero</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-file-contract"></i><strong>Log Interact.</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-shield"></i><strong>Sílabo Blindado</strong></div>
+            <div class="tool-card"><i class="fa-solid fa-rocket"></i><strong>Antigravity</strong></div>
+            <div class="tool-card"><i class="fa-solid fa-paw"></i><strong>Open Claw</strong></div>
         </div>
     </div>
 </div>
 
-<!-- Slide 7: Investment DOCENTES -->
+<!-- Slide 7: Investment -->
 <div class="slide-container" id="slide7">
     <h2 class="slide-title">Estructura de Inversión</h2>
     <div class="content-area">
         <div class="highlight-numbers-layout">
             <div>
                 <div class="number">USD 95</div>
-                <div class="number-label">más IVA x módulo<br><span style="font-size: 14px; color: var(--accent);">(Precio de Lanzamiento)</span></div>
+                <div class="number-label">más IVA x módulo</div>
             </div>
             <div>
                 <h3>Avanza a tu propio ritmo</h3>
-                <p style="margin-bottom: 30px;">Terminas el curso con el ecosistema completo de tu asignatura real configurado. Empieza con el Módulo 1. Si tu carga operativa disminuye, continúas con el Módulo 2.</p>
+                <p style="margin-bottom: 30px;">Una estructura académica diseñada para que construyas conocimiento con confianza. Empieza con el Módulo 1. Si el aprendizaje transforma tu dinámica laboral, continúas con el Módulo 2.</p>
                 <p style="color: var(--accent-light); font-weight: 700; font-size: 26px; margin-bottom: 15px;"><i class="fa-solid fa-circle-check"></i>Sin compromisos financieros anticipados.</p>
                 <p style="color: var(--accent); font-weight: 600; font-size: 20px;"><i class="fa-solid fa-certificate"></i> Entregamos un CERTIFICADO PROPIO por cada módulo aprobado.</p>
             </div>
@@ -442,14 +374,11 @@ body {
 
 <!-- Slide 8: Instructor -->
 <div class="slide-container" id="slide8">
-    <h2 class="slide-title">Facilitador del Programa</h2>
+    <h2 class="slide-title">Arquitecto del Programa</h2>
     <div class="content-area">
         <div class="rounded-image-layout">
             <div>
-                <div class="image-wrapper">
-                    <!-- Apuntamos a la misma foto que ya tienes en el servidor -->
-                    <img src="carlos.jpg" alt="Prof. Carlos Eduardo Chica Villacís" onerror="this.onerror=null; this.src='carlos-foto.jpeg';">
-                </div>
+                <div class="image-wrapper"><img src="carlos.jpg" alt="Prof. Carlos Eduardo Chica Villacís" onerror="this.onerror=null; this.src='carlos-foto.jpeg';"></div>
             </div>
             <div>
                 <h3>Prof. Carlos Eduardo Chica Villacís</h3>
@@ -465,41 +394,26 @@ body {
     </div>
 </div>
 
-<!-- Slide 9: Contact DOCENTES -->
+<!-- Slide 9: Contact -->
 <div class="slide-container" id="slide9">
     <div class="qa-layout">
-        <div class="eyebrow">Máximo 20 docentes por grupo</div>
-        <h2>¿Listo para transformar tu cátedra?</h2>
-        <p style="font-size: 28px; margin-bottom: 40px;">Diseña y domina tu propia ecología académica con IA.</p>
+        <div class="eyebrow">Cupos Limitados</div>
+        <h2>¿Listo para comenzar?</h2>
+        <p style="font-size: 28px; margin-bottom: 40px;">Diseña y domina tu propio ecosistema de aprendizaje con IA.</p>
         
         <div class="contact-box">
-            <div class="contact-row">
-                <i class="fa-regular fa-envelope"></i>
-                <span>carloseduardochica@gmail.com</span>
-            </div>
-            <div class="contact-row">
-                <i class="fa-solid fa-globe"></i>
-                <span>Centro de Formación IA LEX</span>
-            </div>
+            <div class="contact-row"><i class="fa-regular fa-envelope"></i><span>carloseduardochica@gmail.com</span></div>
+            <div class="contact-row"><i class="fa-solid fa-globe"></i><span>Centro de Formación IA LEX</span></div>
         </div>
 
-        <!-- FECHA DE INICIO PARA DOCENTES -->
+        <!-- FECHA ESTUDIANTES -->
         <div style="margin-top: 40px; margin-bottom: 10px; width: 100%; text-align: center;">
-            <span class="date-badge">
-                <i class="fa-regular fa-calendar-check" style="margin-right: 10px;"></i> Inicio: Martes 12 de mayo de 2026
-            </span>
+            <span class="date-badge"><i class="fa-regular fa-calendar-check" style="margin-right: 10px;"></i> Inicio: 08 de mayo de 2026</span>
         </div>
         
-        <!-- DOBLE LLAMADA A LA ACCIÓN -->
         <div class="cta-button-container">
-            <a href="https://tally.so/r/ob7g0N" class="cta-button" target="_blank">
-                <i class="fa-solid fa-credit-card"></i> Inscribirme y Pagar
-            </a>
-            
-            <!-- Mensaje de WhatsApp actualizado para la vertical Docentes -->
-            <a href="https://wa.me/593995841580?text=Profe,%20sobre%20la%20formaci%C3%B3n%20para%20docentes%20en%20IA%20tengo%20una%20duda;" class="cta-button secondary-cta" target="_blank">
-                <i class="fa-brands fa-whatsapp"></i> Tengo una duda
-            </a>
+            <a href="https://tally.so/r/ob7g0N" class="cta-button" target="_blank"><i class="fa-solid fa-credit-card"></i> Inscribirme y Pagar</a>
+            <a href="https://wa.me/593995841580?text=Profe,%20sobre%20la%20formaci%C3%B3n%20en%20IA%20tengo%20una%20duda;" class="cta-button secondary-cta" target="_blank"><i class="fa-brands fa-whatsapp"></i> Tengo una duda</a>
         </div>
     </div>
 </div>
