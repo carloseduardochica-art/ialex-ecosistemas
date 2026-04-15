@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta property="og:title" content="Formación IA LEX - Ecosistemas de Aprendizaje">
-    <meta property="og:description" content="Diseña tu propio ecosistema con IA. Modalidad híbrida. Inicio por módulos.">
+    <meta property="og:title" content="Formación IA LEX - Estudiantes de Derecho">
+    <meta property="og:description" content="El Estudiante de Derecho Aumentado por IA. Uso crítico, estratégico y éticamente responsable en la investigación jurídica.">
     <meta property="og:type" content="website">
-    <title>IA LEX - Presentación de Curso</title>
+    <title>IA LEX - Formación Estudiantes</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,36 +34,28 @@ body {
 }
 
 /* ==========================================================================
-   MODAL FLOTANTE DE PORTADA (OVERLAY INICIAL)
+   MODAL FLOTANTE DE PORTADA (OVERLAY INICIAL - SOLO ESTUDIANTES)
    ========================================================================== */
 .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.95); z-index: 3000; display: flex;
     justify-content: center; align-items: center; backdrop-filter: blur(10px);
 }
-
 .modal-content {
     position: relative; width: 90%; max-width: 900px; max-height: 90vh;
     display: flex; flex-direction: column; align-items: center;
 }
-
 .modal-image {
     max-width: 100%; max-height: 80vh; border-radius: 12px;
     box-shadow: 0 20px 60px rgba(232, 160, 32, 0.2); object-fit: contain;
     border: 1px solid var(--border-color);
 }
-
 .modal-close {
     position: absolute; top: -45px; right: 0px; background: none; border: none;
     color: var(--accent); font-size: 35px; cursor: pointer; transition: transform 0.2s, color 0.2s; z-index: 3001;
 }
-
 .modal-close:hover { transform: scale(1.1); color: #fff; }
-
-.modal-text {
-    color: var(--text-muted); margin-top: 15px; font-size: 14px;
-    letter-spacing: 2px; text-transform: uppercase; text-align: center;
-}
+.modal-text { color: var(--text-muted); margin-top: 15px; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; text-align: center; }
 
 /* ==========================================================================
    NAVEGACIÓN GLOBAL (TOP NAV)
@@ -85,8 +77,8 @@ body {
 .slide-container > * { position: relative; z-index: 1; }
 .slide-container h1, .slide-container h2, .slide-container h3, .slide-container .number, .slide-title { color: var(--text-main); font-family: 'Montserrat', sans-serif; font-weight: 700; margin: 0; letter-spacing: -0.02em; word-break: break-word; hyphens: auto; }
 .slide-container p, .slide-container li, .slide-container .subtitle { color: var(--text-muted); font-family: 'Inter', sans-serif; line-height: 1.7; font-size: 20px; }
-.slide-container h1 { font-size: 72px; line-height: 1.1; text-transform: uppercase; }
-.slide-container h1 span { color: var(--accent); }
+.slide-container h1 { font-size: 64px; line-height: 1.1; text-transform: uppercase; }
+.slide-container h1 span { color: var(--accent); display: block; }
 .slide-container .slide-title { font-size: 56px; text-align: left; width: 100%; margin-bottom: 50px; border-left: 8px solid var(--primary); padding-left: 30px; text-transform: uppercase; }
 .slide-container h3 { font-size: 32px; margin-bottom: 20px; color: var(--accent); }
 .slide-container .subtitle { font-size: 26px; color: var(--text-muted); margin-top: 30px; max-width: 900px; font-weight: 500; }
@@ -99,9 +91,6 @@ body {
 .full-bg-image .pill-container { display: flex; gap: 20px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
 .full-bg-image .pill { background: var(--primary); color: #fff; padding: 12px 30px; border-radius: 40px; font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border: 2px solid var(--primary-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-align: center; }
 
-/* ==========================================================================
-   SPLIT CONTENT LAYOUT (SLIDE 2)
-   ========================================================================== */
 .slide-container.split-content-layout { display: grid; gap: 0; grid-template-columns: 1fr 1fr; padding: 0; border: none; }
 .split-content-layout > .left-side { padding: 80px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, var(--bg-dark), var(--surface)); border-right: 1px solid var(--border-color); }
 .split-content-layout > .right-side { padding: 80px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, var(--surface-light), var(--bg-dark)); position: relative; }
@@ -190,6 +179,7 @@ body {
     body { padding: 90px 10px 20px 10px; gap: 20px; }
     .slide-container { padding: 30px 20px; border-radius: 12px; }
     .slide-container h1 { font-size: 28px; word-break: break-word; hyphens: auto; }
+    .slide-container h1 span { font-size: 22px; }
     .slide-container .slide-title { font-size: 24px; padding-left: 15px; word-break: break-word; }
     .slide-container h3 { font-size: 22px; }
     .slide-container p, .slide-container li, .slide-container .subtitle { font-size: 16px; }
@@ -222,7 +212,6 @@ body {
     .nav-links a { font-size: 11px; }
     .date-badge { font-size: 14px; padding: 12px 15px; letter-spacing: 1px; flex-direction: column; gap: 5px; }
     
-    /* Responsive controls for the simple modal */
     .modal-content { width: 95%; padding: 0; }
     .modal-close { top: -40px; right: 0px; font-size: 30px; }
 }
@@ -230,13 +219,12 @@ body {
 </head>
 <body>
 
-<!-- MODAL FLOTANTE DE PORTADA (SOLO IMAGEN) -->
+<!-- MODAL FLOTANTE DE PORTADA (SOLO ESTUDIANTES) -->
 <div id="portada-modal" class="modal-overlay">
     <div class="modal-content">
         <button class="modal-close" onclick="document.getElementById('portada-modal').style.display='none'">
             <i class="fa-solid fa-xmark"></i>
         </button>
-        <!-- Imagen de Portada -->
         <img src="portada.jpg" alt="Portada Dossier IA LEX" class="modal-image" onerror="this.style.display='none'">
         <div class="modal-text">Haz clic en la X para continuar</div>
     </div>
@@ -253,12 +241,12 @@ body {
     </div>
 </nav>
 
-<!-- Slide 1: Introducción Teórica -->
+<!-- Slide 1: Introducción Teórica ESTUDIANTES -->
 <div class="slide-container full-bg-image" id="slide1" style="background: radial-gradient(circle at center, #2a0808 0%, #0d0d0d 100%);">
     <div class="content-overlay">
         <div class="eyebrow">Dossier de Proyecto · Primera Edición 2026</div>
-        <h1>Diseño y Arquitectura de <span>Ecosistemas de Aprendizaje con IA</span></h1>
-        <p class="subtitle">Uso crítico, estratégico y éticamente responsable de la Inteligencia Artificial en la investigación y producción jurídica de alto impacto.</p>
+        <h1>Diseño y Arquitectura de <br><span>Ecosistemas de Aprendizaje con IA - Estudiante</span></h1>
+        <p class="subtitle">El Estudiante de Derecho Aumentado por IA. Uso crítico, estratégico y éticamente responsable en el estudio, la investigación y la producción jurídica.</p>
         <div class="pill-container">
             <div class="pill">40 horas</div>
             <div class="pill">3 Módulos</div>
@@ -270,38 +258,36 @@ body {
 <!-- Slide 2: El Problema y La Solución -->
 <div class="slide-container split-content-layout" id="slide2">
     <div class="left-side">
-        <div class="eyebrow" style="border-color: var(--primary); color: var(--accent-light);">El Paradigma Actual</div>
+        <div class="eyebrow" style="border-color: var(--primary); color: var(--accent-light);">La Trampa del Oráculo</div>
         <h2 class="slide-title" style="border-left: none; padding-left: 0; margin-bottom: 30px;">El Problema que Resolvemos</h2>
         <div class="content-area" style="align-items: flex-start; justify-content: flex-start;">
-            <p>Los profesionales usan la IA como un <strong>oráculo infalible</strong>, delegando el pensamiento crítico sin consciencia ética y arriesgando datos sensibles.</p>
-            <p style="margin-top: 30px;">Este programa transforma esa vulnerabilidad en una <strong>ventaja arquitectónica</strong>, enseñando a orquestar herramientas con rigor científico y seguridad.</p>
+            <p>El estudiante de derecho usa modelos conversacionales como un <strong>oráculo infalible</strong>, aceptando respuestas sin verificación, inventando jurisprudencia y erosionando su análisis crítico.</p>
+            <p style="margin-top: 20px;">Adicionalmente, delega el pensamiento subiendo expedientes con datos sensibles sin consciencia ética. <strong>El problema no es usar la IA, es usarla a ciegas.</strong></p>
         </div>
     </div>
-    
     <div class="right-side">
         <div class="eyebrow" style="background: rgba(232, 160, 32, 0.1); border-color: var(--accent); color: var(--accent);">La Solución</div>
-        <h3 style="color: #fff; font-size: 28px; margin-bottom: 10px;">El Profesional Transformado</h3>
+        <h3 style="color: #fff; font-size: 28px; margin-bottom: 10px;">El Estudiante Aumentado</h3>
         <p style="font-size: 16px; margin-bottom: 25px; color: var(--text-muted);">
-            Postura erguida, segura. Interactuando con múltiples herramientas de IA organizadas como un sistema. La IA ya no es un "oráculo", sino: <strong>paneles, dashboards y flujos conectados.</strong>
+            No es un curso de tecnología, es un curso de pensamiento jurídico aumentado. La IA no reemplaza tu análisis; lo profundiza, lo acelera y lo audita.
         </p>
-
         <div class="solution-grid">
-            <div class="solution-item"><i class="fa-solid fa-lock"></i><div><strong>Seguridad Activa</strong><span>Protección de datos sensibles garantizada.</span></div></div>
-            <div class="solution-item"><i class="fa-solid fa-brain"></i><div><strong>Pensamiento Crítico</strong><span>El cerebro humano dirige a la máquina.</span></div></div>
-            <div class="solution-item"><i class="fa-solid fa-puzzle-piece"></i><div><strong>Arquitectura de Soluciones</strong><span>Bloques de IA estructurados lógicamente.</span></div></div>
-            <div class="solution-item"><i class="fa-solid fa-chart-network"></i><div><strong>Flujos Conectados</strong><span>Resultados predecibles y auditables.</span></div></div>
+            <div class="solution-item"><i class="fa-solid fa-shield-halved"></i><div><strong>Verificación Rigurosa</strong><span>Evalúa, cuestiona y triangula antes de usar.</span></div></div>
+            <div class="solution-item"><i class="fa-solid fa-brain"></i><div><strong>Pensamiento Aumentado</strong><span>Usa la IA para profundizar, no para delegar.</span></div></div>
+            <div class="solution-item"><i class="fa-solid fa-lock"></i><div><strong>Ecosistemas Seguros</strong><span>Aplica protocolos de privacidad y anonimización.</span></div></div>
+            <div class="solution-item"><i class="fa-solid fa-scale-balanced"></i><div><strong>Producción Ética</strong><span>Mantiene autoría y criterio propios en toda entrega.</span></div></div>
         </div>
     </div>
 </div>
 
 <!-- Slide 3: Module 1 -->
 <div class="slide-container" id="slide3">
-    <h2 class="slide-title">Módulo 1: Fundamentos y Ética Base</h2>
+    <h2 class="slide-title">Módulo 1: Fundamentos, Motor y Ética Base</h2>
     <div class="content-area">
         <div class="tiled-content">
-            <div class="tile"><div class="icon"><i class="fa-solid fa-microchip"></i></div><h3>La IA Vista Desde Dentro</h3><p>Análisis de qué es un LLM, el fenómeno de la alucinación jurídica y el mapeo del ecosistema actual para mitigar errores sistémicos.</p></div>
-            <div class="tile"><div class="icon"><i class="fa-solid fa-terminal"></i></div><h3>Prompting Jurídico</h3><p>Aplicación del Framework RCTFR+CISCO para establecer un ADN jurídico permanente en las interacciones con asistentes especializados.</p></div>
-            <div class="tile"><div class="icon"><i class="fa-solid fa-shield-halved"></i></div><h3>Privacidad por Diseño</h3><p>Gestión del secreto profesional y construcción de un Segundo Cerebro seguro utilizando bases de datos locales y tecnología RAG.</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-microchip"></i></div><h3>La IA Vista Desde Dentro</h3><p>Qué es un LLM, cómo predice texto y por qué alucina sentencias (Caso Mata v. Avianca). Modelos rápidos vs. razonamiento profundo.</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-terminal"></i></div><h3>Prompting Jurídico Avanzado</h3><p>Programar el cerebro del modelo usando Custom Instructions y el Framework unificado RCTFR+CISCO para obtener respuestas exactas.</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-vault"></i></div><h3>El Segundo Cerebro Seguro</h3><p>El secreto profesional y la nube pública. Construcción de ecosistemas cerrados RAG con NotebookLM para analizar expedientes reales.</p></div>
         </div>
     </div>
 </div>
@@ -311,9 +297,9 @@ body {
     <h2 class="slide-title">Módulo 2: Investigación de Alto Impacto</h2>
     <div class="content-area">
         <div class="tiled-content">
-            <div class="tile"><div class="icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div><h3>Búsqueda Triangulada</h3><p>Técnicas avanzadas con Perplexity y Consensus para extraer evidencia científica y citas verificables en tiempo real, revisadas por pares.</p></div>
-            <div class="tile"><div class="icon"><i class="fa-solid fa-scale-balanced"></i></div><h3>Ecosistemas Nativos</h3><p>Integración de plataformas legales especializadas como Vincent AI (vLex) para análisis de jurisprudencia sin efecto de caja negra.</p></div>
-            <div class="tile"><div class="icon"><i class="fa-solid fa-photo-film"></i></div><h3>Orquestación Visual</h3><p>Transformación de investigaciones complejas en narrativas persuasivas mediante la orquestación de herramientas visuales como Gamma.app.</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div><h3>Búsqueda Triangulada</h3><p>Dominio de Perplexity (citas en tiempo real), Consensus (evidencia revisada por pares) y Elicit para extracción estructurada de doctrina.</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-scale-balanced"></i></div><h3>Ecosistemas Nativos</h3><p>Integración de plataformas legales como Vincent AI de vLex para análisis de jurisprudencia nacional sin efecto de "caja negra".</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-photo-film"></i></div><h3>Orquestación Visual</h3><p>Transformar investigaciones complejas en presentaciones y mapas argumentales de alto impacto usando Gamma.app y NotebookLM.</p></div>
         </div>
     </div>
 </div>
@@ -323,19 +309,18 @@ body {
     <h2 class="slide-title">Módulo 3: Orquestación Avanzada</h2>
     <div class="content-area">
         <div class="tiled-content">
-            <div class="tile"><div class="icon"><i class="fa-solid fa-diagram-project"></i></div><h3>Principios de Orquestación</h3><p>Dominio de los principios estructurales para el diseño de flujos de trabajo jurídicos, incluyendo verificación por capas e intervención humana.</p></div>
-            <div class="tile"><div class="icon"><i class="fa-solid fa-robot"></i></div><h3>IA Agéntica</h3><p>De usuario a arquitecto: diseño, despliegue y evaluación de agentes autónomos y asistentes especializados capaces de ejecutar múltiples pasos.</p></div>
-            <div class="tile"><div class="icon"><i class="fa-solid fa-gavel"></i></div><h3>El Futuro del Derecho</h3><p>Reflexión sobre la ética algorítmica, las habilidades no delegables y el perfil del abogado aumentado por inteligencia artificial.</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-diagram-project"></i></div><h3>Principios de Orquestación</h3><p>Aprende a pensar en sistemas: diseño de flujos de trabajo jurídicos con puntos de intervención humana y auditoría secuencial.</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-robot"></i></div><h3>Asistentes y IA Agéntica</h3><p>De usuario a arquitecto. Diseño, construcción y versionado de Gemas/GPTs especializados para tareas jurídicas recurrentes.</p></div>
+            <div class="tile"><div class="icon"><i class="fa-solid fa-gavel"></i></div><h3>Ética y Futuro del Derecho</h3><p>Transparencia, auditoría de alucinaciones y comprensión de las habilidades jurídicas cognitivas que nunca deberás delegar a una máquina.</p></div>
         </div>
     </div>
 </div>
 
 <!-- Slide 6: Ecosystem Tools -->
 <div class="slide-container" id="slide6">
-    <h2 class="slide-title">Las 12 Herramientas del Ecosistema Integrado</h2>
+    <h2 class="slide-title">El Ecosistema Tecnológico del Estudiante</h2>
     <div class="content-area">
-        <p style="text-align: center; max-width: 900px; margin-bottom: 20px;">Dominarás un stack tecnológico completo de herramientas especializadas, orquestadas para potenciar la investigación, redacción y gestión jurídica de alto impacto.</p>
-        
+        <p style="text-align: center; max-width: 900px; margin-bottom: 20px;">Dominarás un stack tecnológico completo de herramientas especializadas, orquestadas para potenciar el estudio, la investigación y la redacción académica.</p>
         <div class="grid-10-tools">
             <div class="tool-card"><i class="fa-solid fa-robot"></i><strong>ChatGPT</strong></div>
             <div class="tool-card"><i class="fa-solid fa-sparkles"></i><strong>Gemini</strong></div>
@@ -364,7 +349,7 @@ body {
             </div>
             <div>
                 <h3>Avanza a tu propio ritmo</h3>
-                <p style="margin-bottom: 30px;">Una estructura académica diseñada para que construyas conocimiento con confianza. Empieza con el Módulo 1. Si el aprendizaje transforma tu dinámica laboral, continúas con el Módulo 2.</p>
+                <p style="margin-bottom: 30px;">Una estructura académica diseñada para que construyas conocimiento con confianza. Empieza con el Módulo 1. Si el aprendizaje transforma tu dinámica académica, continúas con el Módulo 2.</p>
                 <p style="color: var(--accent-light); font-weight: 700; font-size: 26px; margin-bottom: 15px;"><i class="fa-solid fa-circle-check"></i>Sin compromisos financieros anticipados.</p>
                 <p style="color: var(--accent); font-weight: 600; font-size: 20px;"><i class="fa-solid fa-certificate"></i> Entregamos un CERTIFICADO PROPIO por cada módulo aprobado.</p>
             </div>
@@ -413,7 +398,7 @@ body {
         
         <div class="cta-button-container">
             <a href="https://tally.so/r/ob7g0N" class="cta-button" target="_blank"><i class="fa-solid fa-credit-card"></i> Inscribirme y Pagar</a>
-            <a href="https://wa.me/593995841580?text=Profe,%20sobre%20la%20formaci%C3%B3n%20en%20IA%20tengo%20una%20duda;" class="cta-button secondary-cta" target="_blank"><i class="fa-brands fa-whatsapp"></i> Tengo una duda</a>
+            <a href="https://wa.me/593995841580?text=Profe,%20sobre%20la%20formaci%C3%B3n%20para%20estudiantes%20en%20IA%20tengo%20una%20duda;" class="cta-button secondary-cta" target="_blank"><i class="fa-brands fa-whatsapp"></i> Tengo una duda</a>
         </div>
     </div>
 </div>
