@@ -1,407 +1,155 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta property="og:title" content="Formación IA LEX - Estudiantes de Derecho">
-    <meta property="og:description" content="El Estudiante de Derecho Aumentado por IA. Uso crítico, estratégico y éticamente responsable en la investigación jurídica.">
-    <meta property="og:type" content="website">
-    <title>IA LEX - Formación Estudiantes</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-/* 1. THE SETUP & CORE VARIABLES */
-* { box-sizing: border-box; }
-
-:root {
-    --bg-dark: #0d0d0d; --surface: #1a1414; --surface-light: #2a2424;
-    --primary: #7B0D0D; --primary-dark: #5a0a0a;
-    --accent: #e8a020; --accent-light: #ffb84d;
-    --text-main: #ffffff; --text-muted: #cccccc;
-    --border-color: rgba(232, 160, 32, 0.3);
-    --shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-body {
-    background-color: #121212;
-    background-image: linear-gradient(rgba(123, 13, 13, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(123, 13, 13, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px; display: flex; flex-direction: column; align-items: center; gap: 40px;
-    margin: 0; min-height: 100vh; padding: 100px 20px 40px 20px; font-family: 'Inter', sans-serif; overflow-x: hidden;
-}
-
-/* ==========================================================================
-   MODAL FLOTANTE DE PORTADA (OVERLAY INICIAL - SOLO ESTUDIANTES)
-   ========================================================================== */
-.modal-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.95); z-index: 3000; display: flex;
-    justify-content: center; align-items: center; backdrop-filter: blur(10px);
-}
-.modal-content {
-    position: relative; width: 90%; max-width: 900px; max-height: 90vh;
-    display: flex; flex-direction: column; align-items: center;
-}
-.modal-image {
-    max-width: 100%; max-height: 80vh; border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(232, 160, 32, 0.2); object-fit: contain;
-    border: 1px solid var(--border-color);
-}
-.modal-close {
-    position: absolute; top: -45px; right: 0px; background: none; border: none;
-    color: var(--accent); font-size: 35px; cursor: pointer; transition: transform 0.2s, color 0.2s; z-index: 3001;
-}
-.modal-close:hover { transform: scale(1.1); color: #fff; }
-.modal-text { color: var(--text-muted); margin-top: 15px; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; text-align: center; }
-
-/* ==========================================================================
-   NAVEGACIÓN GLOBAL (TOP NAV)
-   ========================================================================== */
-.top-nav {
-    position: fixed; top: 0; left: 0; width: 100%; height: 70px; background: rgba(13, 13, 13, 0.85); backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; padding: 0 40px; z-index: 2000;
-}
-.nav-brand { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; color: var(--text-main); display: flex; align-items: center; gap: 10px; letter-spacing: 1px; }
-.nav-brand i { color: var(--accent); }
-.nav-links { display: flex; gap: 30px; }
-.nav-links a { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; display: flex; align-items: center; gap: 8px; }
-.nav-links a.active { color: var(--accent); }
-.nav-links a:hover { color: var(--text-main); }
-
-/* 2. SLIDES COMPONENTS */
-.slide-container { background-color: var(--bg-dark); border-radius: 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: center; position: relative; width: 100%; max-width: 1280px; min-height: 720px; padding: 60px; border: 1px solid var(--border-color); overflow: hidden; }
-.slide-container::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 8px; background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary)); z-index: 2; }
-.slide-container > * { position: relative; z-index: 1; }
-.slide-container h1, .slide-container h2, .slide-container h3, .slide-container .number, .slide-title { color: var(--text-main); font-family: 'Montserrat', sans-serif; font-weight: 700; margin: 0; letter-spacing: -0.02em; word-break: break-word; hyphens: auto; }
-.slide-container p, .slide-container li, .slide-container .subtitle { color: var(--text-muted); font-family: 'Inter', sans-serif; line-height: 1.7; font-size: 20px; }
-.slide-container h1 { font-size: 64px; line-height: 1.1; text-transform: uppercase; }
-.slide-container h1 span { color: var(--accent); display: block; }
-.slide-container .slide-title { font-size: 56px; text-align: left; width: 100%; margin-bottom: 50px; border-left: 8px solid var(--primary); padding-left: 30px; text-transform: uppercase; }
-.slide-container h3 { font-size: 32px; margin-bottom: 20px; color: var(--accent); }
-.slide-container .subtitle { font-size: 26px; color: var(--text-muted); margin-top: 30px; max-width: 900px; font-weight: 500; }
-.content-area { align-items: center; display: flex; flex-direction: column; flex-grow: 1; justify-content: center; width: 100%; }
-
-.eyebrow { background: linear-gradient(90deg, var(--primary-dark), rgba(232, 160, 32, 0.2)); border: 1px solid var(--accent); color: var(--accent-light); padding: 8px 20px; border-radius: 30px; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; display: inline-block; box-shadow: 0 4px 15px rgba(232, 160, 32, 0.2); }
-
-.full-bg-image { background-position: center; background-size: cover; border: none; align-items: center; }
-.full-bg-image .content-overlay { text-align: center; background: rgba(13, 13, 13, 0.9); padding: 80px; border-radius: 24px; border: 2px solid var(--accent); max-width: 1100px; width: 100%; backdrop-filter: blur(10px); box-shadow: var(--shadow); }
-.full-bg-image .pill-container { display: flex; gap: 20px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
-.full-bg-image .pill { background: var(--primary); color: #fff; padding: 12px 30px; border-radius: 40px; font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border: 2px solid var(--primary-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-align: center; }
-
-.slide-container.split-content-layout { display: grid; gap: 0; grid-template-columns: 1fr 1fr; padding: 0; border: none; }
-.split-content-layout > .left-side { padding: 80px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, var(--bg-dark), var(--surface)); border-right: 1px solid var(--border-color); }
-.split-content-layout > .right-side { padding: 80px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(135deg, var(--surface-light), var(--bg-dark)); position: relative; }
-
-.solution-grid { display: grid; grid-template-columns: 1fr; gap: 25px; margin-top: 10px; }
-.solution-item { display: flex; align-items: center; gap: 20px; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s, border-color 0.3s, background 0.3s; }
-.solution-item:hover { transform: translateX(10px); border-color: var(--accent); background: rgba(232, 160, 32, 0.08); }
-.solution-item i { font-size: 30px; color: var(--accent); width: 40px; text-align: center; }
-.solution-item strong { display: block; color: var(--text-main); font-size: 18px; margin-bottom: 5px; font-weight: 600; }
-.solution-item span { color: var(--text-muted); font-size: 14px; line-height: 1.4; display: block; }
-
-.tiled-content { display: flex; gap: 40px; width: 100%; }
-.tile { background: linear-gradient(180deg, var(--surface), var(--bg-dark)); border: 1px solid var(--border-color); border-radius: 20px; display: flex; flex-direction: column; flex: 1; padding: 50px 40px; position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.tile:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(232, 160, 32, 0.15); border-color: var(--accent); }
-.tile::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--primary); }
-.tile .icon { color: var(--accent); font-size: 50px; margin-bottom: 30px; background: rgba(232, 160, 32, 0.15); width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid var(--border-color); flex-shrink: 0; }
-.tile h3 { font-size: 28px; color: #fff; }
-.tile p { font-size: 20px; }
-
-.grid-10-tools { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; margin-top: 20px; }
-.tool-card { background: linear-gradient(135deg, var(--surface), var(--bg-dark)); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px 20px; text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.tool-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(232, 160, 32, 0.15); }
-.tool-card i { font-size: 40px; color: var(--accent); margin-bottom: 15px; }
-.tool-card strong { color: #fff; font-size: 18px; font-weight: 600; }
-
-.highlight-numbers-layout { display: flex; align-items: center; gap: 80px; background: linear-gradient(90deg, var(--bg-dark), var(--surface)); padding: 80px; border-radius: 24px; border: 2px solid var(--accent); box-shadow: var(--shadow); width: 100%; }
-.highlight-numbers-layout > div:first-child { flex: 0 0 40%; text-align: right; border-right: 4px solid var(--primary); padding-right: 80px; }
-.highlight-numbers-layout .number { color: var(--accent); font-size: 110px; line-height: 0.9; text-shadow: 0 0 30px rgba(232, 160, 32, 0.4); }
-.highlight-numbers-layout .number-label { font-size: 28px; color: var(--text-main); font-weight: 700; letter-spacing: 2px; margin-top: 20px; text-transform: uppercase; }
-.highlight-numbers-layout h3 { font-size: 40px; color: #fff; margin-bottom: 30px; }
-.highlight-numbers-layout p { font-size: 24px; }
-
-.rounded-image-layout { display: flex; align-items: center; gap: 80px; background: linear-gradient(90deg, var(--surface), var(--bg-dark)); padding: 80px; border-radius: 24px; border: 1px solid var(--border-color); width: 100%; }
-.rounded-image-layout .image-wrapper { border-radius: 50%; flex-shrink: 0; height: 450px; width: 450px; border: 6px solid var(--accent); overflow: hidden; box-shadow: var(--shadow); position: relative; background-color: var(--surface-light); }
-.rounded-image-layout .image-wrapper img { height: 100%; width: 100%; object-fit: cover; }
-.rounded-image-layout h3 { font-size: 42px; color: #fff; margin-bottom: 10px; }
-.rounded-image-layout .role { color: var(--accent); font-weight: 700; font-size: 24px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; }
-.rounded-image-layout ul { padding: 0; margin: 0; list-style: none; }
-.rounded-image-layout ul li { margin-bottom: 20px; font-size: 22px; display: flex; align-items: flex-start; }
-.rounded-image-layout ul li i { color: var(--accent); margin-right: 20px; font-size: 24px; margin-top: 5px; flex-shrink: 0; }
-
-.qa-layout { text-align: center; width: 100%; background: linear-gradient(180deg, var(--bg-dark), var(--surface)); padding: 80px; border-radius: 24px; border: 1px solid var(--border-color); }
-.qa-layout h2 { font-size: 80px; margin-bottom: 40px; text-transform: uppercase; }
-.contact-box { background: var(--surface-light); border: 2px solid var(--accent); border-radius: 24px; padding: 60px; display: inline-block; text-align: left; margin-top: 50px; box-shadow: var(--shadow); max-width: 100%; }
-.contact-row { display: flex; align-items: center; gap: 30px; margin-bottom: 30px; }
-.contact-row:last-child { margin-bottom: 0; }
-.contact-row i { font-size: 40px; color: var(--accent); width: 50px; text-align: center; flex-shrink: 0; }
-.contact-row span { font-size: 28px; color: var(--text-main); font-weight: 600; word-break: break-word; }
-
-.date-badge { display: inline-flex; align-items: center; justify-content: center; border: 2px dashed var(--accent); color: var(--accent); font-size: 22px; font-weight: 800; padding: 15px 40px; border-radius: 16px; text-transform: uppercase; letter-spacing: 2px; box-shadow: 0 0 20px rgba(232, 160, 32, 0.15); background: rgba(232, 160, 32, 0.05); text-align: center; max-width: 100%; }
-
-.cta-button-container { margin-top: 50px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; }
-.cta-button { background: var(--accent); color: var(--bg-dark); padding: 20px 40px; border-radius: 50px; font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 15px; box-shadow: 0 10px 30px rgba(232, 160, 32, 0.4); transition: all 0.3s ease; text-align: center; border: none; }
-.cta-button:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(232, 160, 32, 0.6); background: var(--accent-light); }
-.cta-button.secondary-cta { background: transparent; border: 2px solid var(--accent); color: var(--accent); box-shadow: none; }
-.cta-button.secondary-cta:hover { background: rgba(232, 160, 32, 0.1); color: var(--accent-light); border-color: var(--accent-light); transform: translateY(-5px); }
-
-@media (max-width: 1024px) {
-    .modal-close { top: -40px; right: 0; }
-    .slide-container { padding: 40px 30px; min-height: auto; }
-    .slide-container h1 { font-size: 48px; }
-    .slide-container .slide-title { font-size: 40px; padding-left: 20px; margin-bottom: 30px; border-left-width: 5px; }
-    .slide-container h3 { font-size: 26px; }
-    .slide-container p, .slide-container li, .slide-container .subtitle { font-size: 18px; }
-    .full-bg-image .content-overlay { padding: 40px 20px; }
-    .full-bg-image .pill { font-size: 14px; padding: 10px 20px; }
-    .slide-container.split-content-layout { grid-template-columns: 1fr; }
-    .split-content-layout > .left-side, .split-content-layout > .right-side { padding: 40px 30px; }
-    .split-content-layout > .left-side { border-right: none; border-bottom: 2px solid var(--border-color); }
-    .tiled-content { flex-direction: column; gap: 20px; }
-    .tile { padding: 40px 30px; }
-    .grid-10-tools { grid-template-columns: repeat(3, 1fr); }
-    .highlight-numbers-layout { flex-direction: column; padding: 40px 30px; gap: 40px; text-align: center; }
-    .highlight-numbers-layout > div:first-child { border-right: none; border-bottom: 2px solid var(--primary); padding-right: 0; padding-bottom: 30px; }
-    .highlight-numbers-layout .number { font-size: 80px; }
-    .rounded-image-layout { flex-direction: column; padding: 40px 30px; gap: 40px; text-align: center; }
-    .rounded-image-layout .image-wrapper { width: 280px; height: 280px; }
-    .qa-layout { padding: 40px 20px; }
-    .qa-layout h2 { font-size: 48px; }
-    .contact-box { padding: 40px 20px; width: 100%; }
-    .contact-row { flex-direction: column; gap: 15px; text-align: center; }
-    .cta-button { font-size: 16px; padding: 15px 25px; width: 100%; }
-}
-
-@media (max-width: 480px) {
-    body { padding: 90px 10px 20px 10px; gap: 20px; }
-    .slide-container { padding: 30px 20px; border-radius: 12px; }
-    .slide-container h1 { font-size: 28px; word-break: break-word; hyphens: auto; }
-    .slide-container h1 span { font-size: 22px; }
-    .slide-container .slide-title { font-size: 24px; padding-left: 15px; word-break: break-word; }
-    .slide-container h3 { font-size: 22px; }
-    .slide-container p, .slide-container li, .slide-container .subtitle { font-size: 16px; }
-    .eyebrow { font-size: 12px; padding: 6px 15px; }
-    .full-bg-image .pill { width: 100%; text-align: center; }
-    .split-content-layout > .left-side, .split-content-layout > .right-side { padding: 30px 15px; }
-    .solution-item { flex-direction: column; text-align: center; padding: 15px; gap: 10px; }
-    .tile { padding: 30px 20px; }
-    .tile .icon { width: 60px; height: 60px; font-size: 28px; margin-bottom: 15px; }
-    .grid-10-tools { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-    .tool-card { padding: 20px 10px; }
-    .tool-card i { font-size: 28px; }
-    .tool-card strong { font-size: 14px; }
-    .highlight-numbers-layout { padding: 30px 15px; }
-    .highlight-numbers-layout .number { font-size: 50px; }
-    .highlight-numbers-layout h3 { font-size: 26px; }
-    .rounded-image-layout { padding: 30px 15px; }
-    .rounded-image-layout .image-wrapper { width: 180px; height: 180px; }
-    .rounded-image-layout h3 { font-size: 28px; }
-    .rounded-image-layout .role { font-size: 18px; }
-    .rounded-image-layout ul li { font-size: 16px; }
-    .rounded-image-layout ul li i { font-size: 18px; }
-    .qa-layout { padding: 30px 15px; }
-    .qa-layout h2 { font-size: 32px; }
-    .contact-box { padding: 30px 15px; }
-    .contact-row span { font-size: 16px; }
-    .contact-row i { font-size: 24px; width: 30px; }
-    .nav-brand span { display: none; }
-    .nav-links { gap: 15px; }
-    .nav-links a { font-size: 11px; }
-    .date-badge { font-size: 14px; padding: 12px 15px; letter-spacing: 1px; flex-direction: column; gap: 5px; }
-    
-    .modal-content { width: 95%; padding: 0; }
-    .modal-close { top: -40px; right: 0px; font-size: 30px; }
-}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taller IA Tributaria · 14 de noviembre</title>
+<meta name="description" content="Taller práctico: construya su asistente de IA tributaria con normativa ecuatoriana vigente. Sábado 14 de noviembre de 2026, en línea.">
+<meta property="og:title" content="Taller: IA para el ejercicio jurídico-tributario y la protección de datos">
+<meta property="og:description" content="Construya su asistente tributario con normativa vigente del SRI. 14 de noviembre, en línea. Preventa USD 35 + IVA.">
+<meta property="og:image" content="carlos-foto.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#14213d;--navy2:#1d2d50;--cream:#f7f3ea;--paper:#fffdf8;--gold:#b8892e;--gold2:#d4a94a;--ink:#1e2430;--muted:#5b6474;--line:#e4dccb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 Inter,system-ui,sans-serif}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;line-height:1.15;margin:0}
+nav{background:var(--navy);color:var(--cream)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px;gap:12px}
+nav b{font-family:"Source Serif 4",serif;font-size:18px}
+nav a{font-size:14px;text-decoration:none;opacity:.8}
+.hero{background:linear-gradient(160deg,var(--navy),var(--navy2));color:var(--cream);padding:72px 0 64px}
+.eyebrow{display:inline-block;border:1px solid var(--gold2);color:var(--gold2);border-radius:99px;padding:5px 14px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:22px}
+.hero h1{font-size:clamp(32px,5.2vw,54px);max-width:820px}
+.hero h1 em{color:var(--gold2);font-style:normal}
+.hero p.lead{font-size:clamp(17px,2.2vw,20px);max-width:700px;opacity:.88;margin:22px 0 30px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.facts span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:8px 14px;font-size:15px}
+.btn{display:inline-block;background:var(--gold);color:#fff;text-decoration:none;font-weight:600;padding:14px 26px;border-radius:10px;transition:.2s}
+.btn:hover{background:#9c7324}
+.btn.ghost{background:transparent;border:1.5px solid currentColor;margin-left:8px}
+section{padding:64px 0}
+section h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:14px}
+.kicker{color:var(--gold);font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.sub{color:var(--muted);max-width:720px;margin:0 0 32px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px}
+.card h3{font-size:20px;margin-bottom:8px}
+.card p{margin:0;color:var(--muted);font-size:15.5px}
+.num{font-family:"Source Serif 4",serif;color:var(--gold);font-size:30px;font-weight:700;line-height:1;margin-bottom:10px}
+.alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.agenda{list-style:none;padding:0;margin:0;border-left:3px solid var(--gold)}
+.agenda li{padding:10px 0 18px 22px;position:relative}
+.agenda li b{display:block}
+.agenda li span{color:var(--muted);font-size:15.5px}
+.warn{background:var(--navy);color:var(--cream);border-radius:14px;padding:28px}
+.warn h3{color:var(--gold2);font-size:22px;margin-bottom:8px}
+.price{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.price .card{text-align:center}
+.price .card.star{border:2px solid var(--gold);box-shadow:0 12px 30px rgba(20,33,61,.12)}
+.amount{font-family:"Source Serif 4",serif;font-size:46px;font-weight:700;color:var(--navy)}
+.amount small{font-size:18px;color:var(--muted);font-weight:500}
+.tag{display:inline-block;background:var(--gold);color:#fff;font-size:12px;border-radius:99px;padding:3px 10px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
+.steps{counter-reset:s;display:grid;gap:14px;margin-top:28px}
+.step{display:flex;gap:16px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px}
+.step:before{counter-increment:s;content:counter(s);flex:0 0 34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:600}
+.bank{font-family:ui-monospace,Menlo,monospace;background:var(--cream);border-radius:8px;padding:12px 14px;margin-top:8px;font-size:15px;line-height:1.8}
+.bio{display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:center}
+.bio img{width:200px;height:200px;object-fit:cover;border-radius:50%;border:4px solid var(--gold)}
+footer{background:var(--navy);color:var(--cream);padding:40px 0;font-size:14.5px}
+footer a{color:var(--gold2)}
+.note{font-size:14px;color:var(--muted)}
+@media(max-width:640px){.bio{grid-template-columns:1fr;text-align:center}.bio img{margin:0 auto}.btn.ghost{margin:10px 0 0}nav a{display:none}}
+</style>
 </head>
 <body>
 
-<!-- MODAL FLOTANTE DE PORTADA (SOLO ESTUDIANTES) -->
-<div id="portada-modal" class="modal-overlay">
-    <div class="modal-content">
-        <button class="modal-close" onclick="document.getElementById('portada-modal').style.display='none'">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <img src="portada.jpg" alt="Portada Dossier IA LEX" class="modal-image" onerror="this.style.display='none'">
-        <div class="modal-text">Haz clic en la X para continuar</div>
-    </div>
-</div>
+<nav><div class="wrap"><b>Inteligencia Artificial con Carlos Eduardo</b><a href="#inscripcion">Inscribirme</a></div></nav>
 
-<!-- NAVEGACIÓN GLOBAL: ESTUDIANTES ACTIVO -->
-<nav class="top-nav">
-    <div class="nav-brand">
-        <i class="fa-solid fa-scale-balanced"></i> <span>IA LEX</span>
-    </div>
-    <div class="nav-links">
-        <a href="index.html" class="active">Formación Estudiantes</a>
-        <a href="docentes.html">Formación Docentes</a>
-    </div>
-</nav>
+<header class="hero"><div class="wrap">
+  <span class="eyebrow">Taller práctico en vivo · Cupos limitados</span>
+  <h1>IA para el ejercicio jurídico-tributario <em>y la protección de datos</em></h1>
+  <p class="lead">Salga del taller con su propio asistente tributario, construido con la normativa ecuatoriana <strong>vigente</strong>, probado con 20 casos y listo para su despacho o su oficina contable.</p>
+  <div class="facts">
+    <span>📅 Sábado 14 de noviembre de 2026</span>
+    <span>🕣 8:30 a 12:30 (Ecuador)</span>
+    <span>💻 En línea, por Google Meet</span>
+    <span>🎓 Certificado de aprobación</span>
+  </div>
+  <a class="btn" href="#inscripcion">Reservar mi cupo</a>
+  <a class="btn ghost" href="https://wa.me/593995841580?text=Hola%20Carlos%2C%20tengo%20una%20consulta%20sobre%20el%20taller%20del%2014%20de%20noviembre">Tengo una duda</a>
+</div></header>
 
-<!-- Slide 1: Introducción Teórica ESTUDIANTES -->
-<div class="slide-container full-bg-image" id="slide1" style="background: radial-gradient(circle at center, #2a0808 0%, #0d0d0d 100%);">
-    <div class="content-overlay">
-        <div class="eyebrow">Dossier de Proyecto · Primera Edición 2026</div>
-        <h1>Diseño y Arquitectura de <br><span>Ecosistemas de Aprendizaje con IA - Estudiante</span></h1>
-        <p class="subtitle">El Estudiante de Derecho Aumentado por IA. Uso crítico, estratégico y éticamente responsable en el estudio, la investigación y la producción jurídica.</p>
-        <div class="pill-container">
-            <div class="pill">40 horas</div>
-            <div class="pill">3 Módulos</div>
-            <div class="pill">Modalidad Híbrida</div>
-        </div>
-    </div>
-</div>
+<section><div class="wrap">
+  <div class="kicker">El problema</div>
+  <h2>La IA responde con seguridad. Pero no siempre con la norma vigente.</h2>
+  <p class="sub">Las herramientas genéricas citan leyes que la Corte Constitucional ya expulsó, mezclan versiones reformadas y no distinguen una resolución del SRI vigente de una derogada. En materia tributaria, ese error cuesta multas, intereses y clientes.</p>
+  <div class="warn">
+    <h3>Un ejemplo real de 2025</h3>
+    <p style="margin:0">Las leyes de Solidaridad Nacional e Integridad Pública se publicaron en junio de 2025 y la Corte Constitucional las expulsó en septiembre. Pregúntele hoy a una IA genérica por la remisión de intereses o por la deducción por donaciones y compruebe qué responde.</p>
+  </div>
+</div></section>
 
-<!-- Slide 2: El Problema y La Solución -->
-<div class="slide-container split-content-layout" id="slide2">
-    <div class="left-side">
-        <div class="eyebrow" style="border-color: var(--primary); color: var(--accent-light);">La Trampa del Oráculo</div>
-        <h2 class="slide-title" style="border-left: none; padding-left: 0; margin-bottom: 30px;">El Problema que Resolvemos</h2>
-        <div class="content-area" style="align-items: flex-start; justify-content: flex-start;">
-            <p>El estudiante de derecho usa modelos conversacionales como un <strong>oráculo infalible</strong>, aceptando respuestas sin verificación, inventando jurisprudencia y erosionando su análisis crítico.</p>
-            <p style="margin-top: 20px;">Adicionalmente, delega el pensamiento subiendo expedientes con datos sensibles sin consciencia ética. <strong>El problema no es usar la IA, es usarla a ciegas.</strong></p>
-        </div>
-    </div>
-    <div class="right-side">
-        <div class="eyebrow" style="background: rgba(232, 160, 32, 0.1); border-color: var(--accent); color: var(--accent);">La Solución</div>
-        <h3 style="color: #fff; font-size: 28px; margin-bottom: 10px;">El Estudiante Aumentado</h3>
-        <p style="font-size: 16px; margin-bottom: 25px; color: var(--text-muted);">
-            No es un curso de tecnología, es un curso de pensamiento jurídico aumentado. La IA no reemplaza tu análisis; lo profundiza, lo acelera y lo audita.
-        </p>
-        <div class="solution-grid">
-            <div class="solution-item"><i class="fa-solid fa-shield-halved"></i><div><strong>Verificación Rigurosa</strong><span>Evalúa, cuestiona y triangula antes de usar.</span></div></div>
-            <div class="solution-item"><i class="fa-solid fa-brain"></i><div><strong>Pensamiento Aumentado</strong><span>Usa la IA para profundizar, no para delegar.</span></div></div>
-            <div class="solution-item"><i class="fa-solid fa-lock"></i><div><strong>Ecosistemas Seguros</strong><span>Aplica protocolos de privacidad y anonimización.</span></div></div>
-            <div class="solution-item"><i class="fa-solid fa-scale-balanced"></i><div><strong>Producción Ética</strong><span>Mantiene autoría y criterio propios en toda entrega.</span></div></div>
-        </div>
-    </div>
-</div>
+<section class="alt"><div class="wrap">
+  <div class="kicker">Lo que se lleva</div>
+  <h2>Un asistente suyo, no una suscripción ajena</h2>
+  <p class="sub">El taller es práctico: cada participante construye y prueba su propio asistente. El método funciona en cualquier plataforma, así que no depende de que una herramienta exista mañana.</p>
+  <div class="grid">
+    <div class="card"><div class="num">01</div><h3>Corpus vigente verificado</h3><p>Código Tributario, LORTI y su reglamento, ISD, COPCI, LOPDP, y las resoluciones y circulares del SRI de 2024 a 2026, con los enlaces oficiales para descargarlos.</p></div>
+    <div class="card"><div class="num">02</div><h3>Protocolo de vigencia</h3><p>Cómo comprobar en dos minutos si una norma está viva, reformada o expulsada, y mantener su asistente al día sin pagar plataformas.</p></div>
+    <div class="card"><div class="num">03</div><h3>Batería de 20 pruebas</h3><p>Casos tributarios reales para medir si su asistente cita bien o inventa: IVA, renta, ISD, dividendos, plazos y mediación.</p></div>
+    <div class="card"><div class="num">04</div><h3>Instrucciones y manual</h3><p>Instrucciones listas para NotebookLM y para Claude, y un manual paso a paso para replicarlo en su equipo de trabajo.</p></div>
+  </div>
+</div></section>
 
-<!-- Slide 3: Module 1 -->
-<div class="slide-container" id="slide3">
-    <h2 class="slide-title">Módulo 1: Fundamentos, Motor y Ética Base</h2>
-    <div class="content-area">
-        <div class="tiled-content">
-            <div class="tile"><div class="icon"><i class="fa-solid fa-microchip"></i></div><h3>La IA Vista Desde Dentro</h3><p>Qué es un LLM, cómo predice texto y por qué alucina sentencias (Caso Mata v. Avianca). Modelos rápidos vs. razonamiento profundo.</p></div>
-            <div class="tile"><div class="icon"><i class="fa-solid fa-terminal"></i></div><h3>Prompting Jurídico Avanzado</h3><p>Programar el cerebro del modelo usando Custom Instructions y el Framework unificado RCTFR+CISCO para obtener respuestas exactas.</p></div>
-            <div class="tile"><div class="icon"><i class="fa-solid fa-vault"></i></div><h3>El Segundo Cerebro Seguro</h3><p>El secreto profesional y la nube pública. Construcción de ecosistemas cerrados RAG con NotebookLM para analizar expedientes reales.</p></div>
-        </div>
-    </div>
-</div>
+<section><div class="wrap">
+  <div class="kicker">Programa · 4 horas</div>
+  <h2>De la consulta improvisada al asistente verificado</h2>
+  <ul class="agenda" style="margin-top:28px">
+    <li><b>8:30 · Dónde se equivoca la IA en tributario</b><span>Normas expulsadas, versiones reformadas y citas inventadas: cómo detectarlas.</span></li>
+    <li><b>9:15 · Su corpus vigente</b><span>Qué cargar, qué no cargar y por qué. El protocolo de vigencia aplicado en vivo.</span></li>
+    <li><b>10:00 · Construcción del asistente</b><span>Configuración paso a paso, con instrucciones para que responda solo con base en sus fuentes y cite el artículo.</span></li>
+    <li><b>11:00 · Pruebas con 20 casos</b><span>Cada participante mide su asistente y corrige lo que falla.</span></li>
+    <li><b>11:45 · Datos de clientes y LOPDP</b><span>Qué información nunca subir, consentimientos y cuidado de los datos de sus clientes.</span></li>
+    <li><b>12:15 · Cierre y certificado</b><span>Entrega del kit y evaluación para el certificado de aprobación.</span></li>
+  </ul>
+  <p class="note">Dirigido a abogados, contadores, mediadores, empresarios y servidores públicos. No necesita conocimientos técnicos.</p>
+</div></section>
 
-<!-- Slide 4: Module 2 -->
-<div class="slide-container" id="slide4">
-    <h2 class="slide-title">Módulo 2: Investigación de Alto Impacto</h2>
-    <div class="content-area">
-        <div class="tiled-content">
-            <div class="tile"><div class="icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div><h3>Búsqueda Triangulada</h3><p>Dominio de Perplexity (citas en tiempo real), Consensus (evidencia revisada por pares) y Elicit para extracción estructurada de doctrina.</p></div>
-            <div class="tile"><div class="icon"><i class="fa-solid fa-scale-balanced"></i></div><h3>Ecosistemas Nativos</h3><p>Integración de plataformas legales como Vincent AI de vLex para análisis de jurisprudencia nacional sin efecto de "caja negra".</p></div>
-            <div class="tile"><div class="icon"><i class="fa-solid fa-photo-film"></i></div><h3>Orquestación Visual</h3><p>Transformar investigaciones complejas en presentaciones y mapas argumentales de alto impacto usando Gamma.app y NotebookLM.</p></div>
-        </div>
-    </div>
-</div>
+<section class="alt" id="inscripcion"><div class="wrap">
+  <div class="kicker">Inversión</div>
+  <h2>Inscripción</h2>
+  <div class="price" style="margin-top:24px">
+    <div class="card star"><span class="tag">Preventa hasta el 31 de octubre</span><div class="amount">USD 35 <small>+ IVA</small></div><p>Total a transferir: <strong>USD 40,25</strong></p></div>
+    <div class="card"><span class="tag" style="background:var(--muted)">Precio regular</span><div class="amount">USD 45 <small>+ IVA</small></div><p>Total a transferir: <strong>USD 51,75</strong></p></div>
+  </div>
+  <div class="steps">
+    <div class="step"><div><b>Transfiera el valor</b>
+      <div class="bank">Banco Pichincha · Cuenta de ahorros<br>N.° 4648792500<br>Titular: Carlos Eduardo Chica Villacís<br>C.I. 0502787856</div></div></div>
+    <div class="step"><div><b>Complete el formulario de inscripción</b><br>Registre sus datos de facturación y el número de comprobante.<br><br>
+      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSd4COth5PcNM-nmdjWixox-a32_hueCoNKftZgb3c91TqC8Xg/viewform" target="_blank" rel="noopener">Completar inscripción</a></div></div>
+    <div class="step"><div><b>Reciba su confirmación</b><br>En un máximo de 24 horas recibirá su factura electrónica y el enlace del taller en su correo.</div></div>
+  </div>
+</div></section>
 
-<!-- Slide 5: Module 3 -->
-<div class="slide-container" id="slide5">
-    <h2 class="slide-title">Módulo 3: Orquestación Avanzada</h2>
-    <div class="content-area">
-        <div class="tiled-content">
-            <div class="tile"><div class="icon"><i class="fa-solid fa-diagram-project"></i></div><h3>Principios de Orquestación</h3><p>Aprende a pensar en sistemas: diseño de flujos de trabajo jurídicos con puntos de intervención humana y auditoría secuencial.</p></div>
-            <div class="tile"><div class="icon"><i class="fa-solid fa-robot"></i></div><h3>Asistentes y IA Agéntica</h3><p>De usuario a arquitecto. Diseño, construcción y versionado de Gemas/GPTs especializados para tareas jurídicas recurrentes.</p></div>
-            <div class="tile"><div class="icon"><i class="fa-solid fa-gavel"></i></div><h3>Ética y Futuro del Derecho</h3><p>Transparencia, auditoría de alucinaciones y comprensión de las habilidades jurídicas cognitivas que nunca deberás delegar a una máquina.</p></div>
-        </div>
-    </div>
-</div>
+<section><div class="wrap bio">
+  <img src="carlos-foto.jpeg" alt="Carlos Eduardo Chica-Villacís">
+  <div>
+    <div class="kicker">Quién dicta el taller</div>
+    <h2>Ab. Carlos Eduardo Chica-Villacís, Mgs.</h2>
+    <p>Abogado tributarista y docente universitario. Magíster en Derecho Tributario (Universidad Andina Simón Bolívar) y en Derecho Procesal (UTPL), y doctorando en Derecho en la UASB, donde investiga la integración crítica de la inteligencia artificial en la enseñanza y el ejercicio del derecho. Formador de mediadores tributarios. Usa y diseña asistentes de IA para la práctica jurídica desde 2022.</p>
+    <p class="note">«La máquina redacta. El criterio decide.»</p>
+  </div>
+</div></section>
 
-<!-- Slide 6: Ecosystem Tools -->
-<div class="slide-container" id="slide6">
-    <h2 class="slide-title">El Ecosistema Tecnológico del Estudiante</h2>
-    <div class="content-area">
-        <p style="text-align: center; max-width: 900px; margin-bottom: 20px;">Dominarás un stack tecnológico completo de herramientas especializadas, orquestadas para potenciar el estudio, la investigación y la redacción académica.</p>
-        <div class="grid-10-tools">
-            <div class="tool-card"><i class="fa-solid fa-robot"></i><strong>ChatGPT</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-sparkles"></i><strong>Gemini</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-brain"></i><strong>Claude</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-book-journal-whills"></i><strong>NotebookLM</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-magnifying-glass"></i><strong>Perplexity</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-microscope"></i><strong>Consensus</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-flask"></i><strong>Elicit</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-scale-balanced"></i><strong>Vincent AI</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-presentation-screen"></i><strong>Gamma</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-bookmark"></i><strong>Zotero</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-rocket"></i><strong>Antigravity</strong></div>
-            <div class="tool-card"><i class="fa-solid fa-paw"></i><strong>Open Claw</strong></div>
-        </div>
-    </div>
-</div>
-
-<!-- Slide 7: Investment -->
-<div class="slide-container" id="slide7">
-    <h2 class="slide-title">Estructura de Inversión</h2>
-    <div class="content-area">
-        <div class="highlight-numbers-layout">
-            <div>
-                <div class="number">USD 95</div>
-                <div class="number-label">más IVA x módulo</div>
-            </div>
-            <div>
-                <h3>Avanza a tu propio ritmo</h3>
-                <p style="margin-bottom: 30px;">Una estructura académica diseñada para que construyas conocimiento con confianza. Empieza con el Módulo 1. Si el aprendizaje transforma tu dinámica académica, continúas con el Módulo 2.</p>
-                <p style="color: var(--accent-light); font-weight: 700; font-size: 26px; margin-bottom: 15px;"><i class="fa-solid fa-circle-check"></i>Sin compromisos financieros anticipados.</p>
-                <p style="color: var(--accent); font-weight: 600; font-size: 20px;"><i class="fa-solid fa-certificate"></i> Entregamos un CERTIFICADO PROPIO por cada módulo aprobado.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Slide 8: Instructor -->
-<div class="slide-container" id="slide8">
-    <h2 class="slide-title">Arquitecto del Programa</h2>
-    <div class="content-area">
-        <div class="rounded-image-layout">
-            <div>
-                <div class="image-wrapper"><img src="carlos.jpg" alt="Prof. Carlos Eduardo Chica Villacís" onerror="this.onerror=null; this.src='carlos-foto.jpeg';"></div>
-            </div>
-            <div>
-                <h3>Prof. Carlos Eduardo Chica Villacís</h3>
-                <div class="role">Director, Centro IA LEX</div>
-                <ul style="list-style: none; padding: 0;">
-                    <li><i class="fa-solid fa-chevron-right"></i>Doctorando en Derecho</li>
-                    <li><i class="fa-solid fa-chevron-right"></i>Máster en Derecho Procesal y Tributario</li>
-                    <li><i class="fa-solid fa-chevron-right"></i>Maestrante en Inteligencia Artificial Aplicada</li>
-                    <li><i class="fa-solid fa-chevron-right"></i>Diseñador experto de flujos de orquestación pedagógica para formación jurídica.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Slide 9: Contact -->
-<div class="slide-container" id="slide9">
-    <div class="qa-layout">
-        <div class="eyebrow">Cupos Limitados</div>
-        <h2>¿Listo para comenzar?</h2>
-        <p style="font-size: 28px; margin-bottom: 40px;">Diseña y domina tu propio ecosistema de aprendizaje con IA.</p>
-        
-        <div class="contact-box">
-            <div class="contact-row"><i class="fa-regular fa-envelope"></i><span>carloseduardochica@gmail.com</span></div>
-            <div class="contact-row"><i class="fa-solid fa-globe"></i><span>Centro de Formación IA LEX</span></div>
-        </div>
-
-        <!-- FECHA ESTUDIANTES -->
-        <div style="margin-top: 40px; margin-bottom: 10px; width: 100%; text-align: center;">
-            <span class="date-badge"><i class="fa-regular fa-calendar-check" style="margin-right: 10px;"></i> Inicio: 08 de mayo de 2026</span>
-        </div>
-        
-        <div class="cta-button-container">
-            <a href="https://tally.so/r/ob7g0N" class="cta-button" target="_blank"><i class="fa-solid fa-credit-card"></i> Inscribirme y Pagar</a>
-            <a href="https://wa.me/593995841580?text=Profe,%20sobre%20la%20formaci%C3%B3n%20para%20estudiantes%20en%20IA%20tengo%20una%20duda;" class="cta-button secondary-cta" target="_blank"><i class="fa-brands fa-whatsapp"></i> Tengo una duda</a>
-        </div>
-    </div>
-</div>
-
+<footer><div class="wrap">
+  <p><strong>Inteligencia Artificial con Carlos Eduardo</strong> · Despacho Jurídico Justicia Integral<br>
+  Dudas: <a href="https://wa.me/593995841580">WhatsApp +593 99 584 1580</a> · <a href="mailto:carloseduardochica@gmail.com">carloseduardochica@gmail.com</a></p>
+  <p class="note" style="color:#b9c0cc">Sus datos se usan solo para gestionar su inscripción, su factura y su certificado, conforme a la Ley Orgánica de Protección de Datos Personales. El taller es formativo y no constituye asesoría jurídica ni tributaria para casos concretos.</p>
+</div></footer>
 </body>
 </html>
